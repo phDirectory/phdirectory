@@ -15,11 +15,22 @@
             $sql="SELECT ".merge($fields)." FROM ".$table." ".$other;
         else 
             $sql="SELECT ".$fields." FROM ".$table." ".$other;
-//        echo $sql;
+        //echo $sql;
         return $GLOBALS["db"]->query($sql)->fetchAll();
     }
 
-    
+    function merge($array)
+    {
+        $str="";
+        $size=count($array);
+        for($c=0;$c<$size;$c++)
+        {
+            $str=$str." ".$array[$c];
+            if($c+1!=$size)
+                $str=$str.",";
+        }
+        return $str;
+    }
 
-    
+   
 ?>

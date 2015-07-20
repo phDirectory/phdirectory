@@ -1,3 +1,7 @@
+<?php 
+  print_r($_POST)
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,7 +35,7 @@
 	</footer>-->		
 	</div><!--container-->
 
-			<!--modals-->
+	<!--modals-->
 	<div class="modal fade" id="logMod" tabindex="-1" role="dialog"aria-labelledby="myModalLabel" aria-hidden="true">    
 		<div class="modal-dialog">       
 			<div class="modal-content">          
@@ -42,7 +46,7 @@
             		</h4>          
             	</div>          
             <div class="modal-body">
-    				    <form class="form-horizontal">   
+    				    <form class="form-horizontal" method="POST" id="loginForm">   
   						  <div class="form-group has-feedback">
                  	  		<label class="col-sm-3" for="signin-username">Username</label>
                  	  		<div class="col-sm-5">
@@ -58,17 +62,20 @@
                  	  			<span class="glyphicon glyphicon-lock form-control-feedback"></span>  
   		    				      </div>
   		    			 </div>
- 					      </form>
- 					      <div class="modal-footer">             
-            			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            			<input type="submit" class="btn btn-success" id="btnlog" data-dismiss="modal" value="Login" name="submit"><!--login button-->
-            	   </div> 	
-                 </div><!--modal body-->
-          </div><!--modal content-->
-       </div><!--modal dialog-->
-    </div><!--modal-->
+ 					      
+                 <div class="modal-footer">             
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <input type="submit" class="btn btn-success" id="btnlog" data-dismiss="modal" value="Login" name="submit"><!--login button-->
+                 </div> 
 
-	<div class="modal fade" id="regMod" tabindex="-1" role="dialog"aria-labelledby="myModalLabel" aria-hidden="true">    
+                </form>
+ 					     	
+            </div><!--modal body-->
+          </div><!--modal content-->
+      </div><!--modal dialog-->
+  </div><!--modal-->
+
+	<div class="modal fade" id="regMod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">    
 		<div class="modal-dialog">       
 			<div class="modal-content">          
 				<div class="modal-header">             

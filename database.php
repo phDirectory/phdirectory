@@ -14,8 +14,9 @@
 
     function login($username,$password)
     {
-       $result=getAllFrom("account","*","where username=".encloseWithQuote($username)." AND password=".encloseWithQuote(md5($password)));
+       $result=getAllFrom("admin","*","where username=".encloseWithQuote($username)." AND password=".encloseWithQuote($password));
         
+
         if($username == "")
         {
             $info["ok"]=false;
@@ -39,15 +40,10 @@
         else
         {
             $info["ok"]=true;
-            $type=$result[0]["usertype"];
-            if($type==0)//user is admin
-                $info["page"]="admin.php";
-            else if($type==1)//user is phdirectory admin
-                $info["page"]="user.php";
+            $info["page"]="home.php";
             $_SESSION["login"]=true;
             return $info;
         }
     }
-
 
 ?>
