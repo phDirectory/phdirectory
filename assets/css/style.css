@@ -1,0 +1,137 @@
+body{
+	margin: 0px auto;
+	padding:0px;
+}
+
+#banner{
+	width:98%;
+	border:solid;
+	border-width:2px;
+	background:#ccc;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 5px 5px 5px #888;
+	margin:5px;
+	margin-right:0px;
+	margin-bottom:10px;
+}
+#comments{
+	text-align:left;
+	
+}
+#commentBox{
+	text-align:left;	
+}
+
+
+#login{
+	background:#C0C0C0;
+	-webkit-box-shadow:10px;
+	margin-top:10px;
+	text-align:center;
+	-webkit-border-radius:10px;
+	-webkit-box-shadow:5px 5px 5px #888;
+	padding-bottom:10px;
+}
+#login img{
+	width:100px;
+	height:150px;
+	margin:auto;	
+}
+
+h3{
+	background:#A1BECB;	
+}
+
+footer{
+	text-align:center;
+	width:100%;
+	background:-webkit-linear-gradient(top,#DDDDDD,#888);
+	position:fixed;
+	bottom:0px;
+	clear:both;
+	font-family:verdana;
+	font-size:14px;
+	text-align: center;
+	margin-top:20px;
+}
+
+#content{
+	-webkit-box-shadow:10px 10px 10px #888;
+	background-color:#C0C0C0;
+	padding-top:10px;
+	padding-bottom:2px;
+	margin:10px 15px 15px 15px;
+}
+
+#file-image {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    overflow: hidden;
+}
+
+
+#file-image input {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    -moz-opacity: 0;
+    filter: alpha(opacity: 0);
+    opacity: 0;
+}
+
+section{
+	background-color:#FFFFFF;
+	margin:10px;
+	margin-bottom:20px;
+	-webkit-border-radius:10px;
+	-webkit-box-shadow: 5px 5px 5px black;
+	border:solid;
+	border-width:1px;
+	border-color:#888;
+}
+article{
+	
+	font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+	
+}
+article header{
+	background:-webkit-linear-gradient(top,#DDDDDD,#888);
+	font-size:24px;
+	text-align:center;
+}
+article footer{
+	background:-webkit-linear-gradient(bottom,#DDDDDD,#888);
+	font-size:14px;
+	text-align:center;
+	position:relative;
+	bottom:0;
+}
+
+#toggle img{
+	float:right;
+	clear:both;
+	font-size:20px;
+	width:30px;
+	height:30px;
+	padding-top:0px;
+	margin-top:0px;
+	margin-bottom:10px;
+	
+}
+.contHead{
+	background:-webkit-linear-gradient(top,#DDDDDD,#888);
+	-webkit-border-radius:10px;
+	-webkit-box-shadow: 5px 5px 5px black;
+	width:98%;
+	
+}
+.contHead h2{
+	margin:5px;
+	padding:10px;
+	
+}
+
+
+
