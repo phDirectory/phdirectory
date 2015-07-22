@@ -5,26 +5,10 @@
     if(isset($_POST["request"]))
     {
         $request=$_POST["request"];
-        
-        if($request=="signin")
+        if($request=="login")
         {
             echo json_encode(login($_POST["username"],$_POST["password"]));
         }
-        //else if($request=="subscribe")
-        //{
-        //    echo json_encode(signup($_POST["firstname"],$_POST["middlename"],$_POST["lastname"],$_POST["email"],$_POST["password"]));
-        //}
-        else if($request=="logout")
-        {
-            echo json_encode(logout());
-        }
-        //else if($request=="sample-request")
-        //{
-        //    echo '{"ok":true}';
-        //}
-
-
-
     }
 
     

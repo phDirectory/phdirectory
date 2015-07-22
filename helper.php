@@ -9,7 +9,7 @@
         $GLOBALS["db_name"]=$database;
     }
 
-    function getAllFrom($table,$fields="*",$other="")
+    function get($table,$fields="*",$other="")
     {
         if(is_array($fields))
             $sql="SELECT ".merge($fields)." FROM ".$table." ".$other;
@@ -31,6 +31,8 @@
         }
         return $str;
     }
-
-   
+    function quoted($string)
+    {
+        return "'".$string."'";
+    }
 ?>

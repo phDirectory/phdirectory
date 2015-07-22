@@ -2,7 +2,6 @@
     include_once"helper.php";
 	connectTo("phdirectory_db");
 	session_start();
-    
     function logout()
     {
         unset($_SESSION);
@@ -14,35 +13,20 @@
 
     function login($username,$password)
     {
-       $result=getAllFrom("admin","*","where username=".encloseWithQuote($username)." AND password=".encloseWithQuote($password));
-        
-
-        if($username == "")
+       $result=get("admin","*","where username=".quoted($username)." AND password=".quoted($password));
+        if(empty($result))
         {
-            $info["ok"]=false;
-            $info["message"]="Email is required!";
-            return $info;
-        }
-
-        else if($password == "")
-        {
-            $info["ok"]=false;
-            $info["message"]="Password is required!";
-            return $info;
-        }
-
-        else if(empty($result))
-        {
-            $info["ok"]=false;
-            $info["message"]="Incorrect email or password!";
-            return $info;
+            $array=array();
+            $array["ok"]=false;
+            $array["message"]="Username or Password is incorrect";
+            return $array;
         }
         else
         {
-            $info["ok"]=true;
-            $info["page"]="home.php";
-            $_SESSION["login"]=true;
-            return $info;
+            $array=array();
+            $array["ok"]=true;
+            $array["data"]=$result[0];
+            return $array;
         }
     }
 

@@ -6,8 +6,7 @@
   		<meta name="viewport" content="width=device-width, initial-scale=1">
   		<link href="assets/style.css" rel="stylesheet">
    		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-  		<script src="assets/jquery.min.js"></script>
-		  <script src="assets/js/bootstrap.min.js"></script>
+  		
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -18,7 +17,7 @@
 			<nav class="pull-right">
 				<ul class="list-inline">
 					<li><a class="cd-signup"data-toggle="modal" href="#regMod" style="text-decoration: none;">Subscribe</a></li>
-					<li><a class="cd-signin" data-toggle="modal" href="#logMod" style="text-decoration: none;" id="signin">Login</a></li>				
+					<li><a class="cd-signin" style="text-decoration: none;" id="signin" href="login/">Login</a></li>				
 				</ul>
 			</nav>
 		</div><!--menu-->
@@ -139,6 +138,7 @@
           	</div><!-- /.modal-content --> 
          </div><!-- /.modal dialog -->  
 	</div>
-
 	</body>
+  <script src="assets/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
 </html>
