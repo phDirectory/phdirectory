@@ -35,4 +35,8 @@
     {
         return "'".$string."'";
     }
-?>
+
+	function connect()
+	{
+		return $GLOBALS["db"];
+	}	

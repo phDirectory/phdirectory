@@ -6,9 +6,7 @@
     {
         unset($_SESSION);
         session_destroy();
-        $info["ok"]=true;
-        $info["page"]="index.php";
-        return $info;
+		header("Location.php");
     }
 
     function login($username,$password)
@@ -16,18 +14,35 @@
        $result=get("admin","*","where username=".quoted($username)." AND password=".quoted($password));
         if(empty($result))
         {
-            $array=array();
-            $array["ok"]=false;
-            $array["message"]="Username or Password is incorrect";
-            return $array;
+            return null;
         }
         else
         {
-            $array=array();
-            $array["ok"]=true;
-            $array["data"]=$result[0];
-            return $array;
+			//add session
+			header('Location:home.php');
         }
     }
 
-?>
+	function subscribe($array)
+	{
+		$email=$_POST["agencyemail"];
+		$result=get("agency","*","where email='$email'");
+		if(empty($result))
+		{
+			$sql="insert into agency(agencyName,email,phoneNo)values(?,?,?)";
+			connect()->prepare($sql)->execute(array($_POST["agencyname"],
+											   	$_POST["agencyemail"],
+												$_POST["agencyphone"]
+											   ));
+			$ret=array();
+			$ret["ok"]=true;
+			return $ret;
+		}
+		else 
+		{
+			$ret=array();
+			$ret["ok"]=false;
+			$ret["message"]="Email is already used";
+			return $ret;
+		}
+	}	

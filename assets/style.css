@@ -1,176 +1,99 @@
 
 #menu{
-	background-color:#29A3A3;
+	background-color:#202C39;
 }
-#menu h1{
+#menu h1 a{
 	color:#FFFFFF;
-	margin-top:30px;	
+	margin-top:15px;
+    padding-left: 180px;
+    text-decoration: none;
+	font-weight: bolder;
 }
 
 #content{
 	margin-left: 0px;
 	padding-left: 0px;
 }
-#menu img{
-	width:75px;
-	height:75px;
-	margin-top:15px;
-	margin-right:20px;
-	margin-bottom:10px;
-	clear:both;
-}
 
 nav ul li{
-	
-	font-family: Verdana;
-	font-size: 18px;
-	margin-top:30px;
-	margin-right:10px;
-	
-}
-
-nav ul li a{
+	font-family: Verdana;	
+	font-size: 14px;
+	margin-top:20px;
+	margin-right:1px;
 	text-decoration:none;	
 	color:#FFFFFF;
-}
-
-nav ul li a:hover{
-	color:#888;	
-	text-decoration: none;
-}
-.image{
-	position:absolute;
-}
-.image .text{
-	position:absolute;
-    top:200px;
-    left:20px;
-    width:400px;	
-}
-.text h1{
-	background-color:#FF9900;
-	border-radius: 5px;
-	color:#FFFFFF;
-	font-size:40px;
-	padding:20px;
-	clear:both;
-	text-align:center;
-	
-}
-.text h4{
-	background-color:#000000;
-	border-radius: 5px;
-	color:#FFFFFF;
-	padding:10px;
-	clear: both;
-	width:600px;
-}
-.carousel-inner .item img{
-	min-width:100%;
-}
-
-#about h4{
-	text-align:center;
-	font-style: bold;
-	font-size:30px;
-	padding-top:10px;
-	padding-bottom:10px;
-	clear:both;
-}
-
-#about p{
-	font-size:16px;
-	margin:5px;
-	text-align:center;
-}
-#about{
-	margin-bottom:50px;
-	
+    font-size: 16px;
+	padding: 10px;
+	border-radius: 10px;
+	border-color: #202C39;
+	background-color: #202C39;
+	border-style: solid;
+	outline: none;
 }
 
 
-footer{
-	background-color:#29A3A3;	
-}
-
-footer p{
-	font-size:14px;
-	color:#ffffff;
-	margin-left:10px;
-	text-align: center;
-}
-
-.modal-body label{
-	font-size:14px;
-
-	
-}
-
-#contact-page input, textarea{
-	margin-bottom:5px;
-	
-}
-
-#details h3{
-	margin-bottom:30px;
-	
-}
-
-#member-page img{
-	height:100%;
-	width:100%;
-	margin-top:20px;
-	margin-bottom:20px;
-}
-#member-page h4{
-	text-align:center;
-	margin-bottom:30px;
-}
-#member-page p{
-	width:80%;
-	text-align:center;
-	margin-bottom:50px;
-	
-}
-
-#about-page img{
-	width:100%;
-	height:100%;
-}
-
-#error{
-	background-color:#888;
-	border-radius:5px;
-	-webkit-border-radius:10px;
-	width:98%;
-	padding-bottom:100px;
-	margin-top:50px;
-	clear:both;
-}
-
-#error h1{
-	padding-top:50px;
-	font-size:50px;
-	color: #FFFFFF;
-	text-align:center;
-	
-}
-
-#err{
-	font-size:20px;
-	margin-left:50px;
-	color:#B92C28;
-}
-
-
-#error h4{
-	margin-top:20px;
-	text-align:center;
-	color:#ffffff;
-	
-}
-
-.signin-card
+nav ul li:last-child
 {
-	
+	margin-right: 120px;
+}
+
+nav ul li:hover
+{
+	color: #FFF;
+	text-decoration: none;
+	background-color: #283845;
+	border-color: #202C39;
+	border-style: solid;
+	outline: none;
+}
+
+nav ul li input
+{
+    padding: 3px;
+    width: 180px;
+	border-color:#202C39;
+	border-style: solid;
+	outline: none;
+}
+
+#content div h1
+{
+    margin-right: 300px;
+	font-weight: bolder;
+	margin-top: 50px;
+	color: #283845;
+}
+
+#content div form input
+{
+	margin-top:10px;
+	padding:6px;
+	border-radius: 5px;
+	border-color:#D2D7DB;
+	width: 300px;
+	font-size: 14px;
+	border-style: solid;
+	outline: none;
+}
+
+div form button
+{
+	padding: 10px;
+	width: 100px;
+	background-color: #202C39;
+	color: #FFF;
+	margin-top: 10px;
+	border-color: #202C39;
+	border-style: solid;
+	border-radius: 10px;
+	outline: none;
+}
+
+div form button:hover
+{
+	color: #FFF;
+	text-decoration: none;
+	background-color: #283845;
+	border-color: #283845;
+	outline: none;
 }
