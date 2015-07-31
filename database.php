@@ -6,7 +6,7 @@
     {
         unset($_SESSION);
         session_destroy();
-		header("Location.php");
+		header("Location:../index.php");
     }
 
     function login($username,$password)
@@ -19,7 +19,7 @@
         else
         {
 			//add session
-			header('Location:home.php');
+			header('Location:phdir/');
         }
     }
 

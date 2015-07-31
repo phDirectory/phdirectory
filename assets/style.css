@@ -1,6 +1,6 @@
 
 #menu{
-	background-color:#202C39;
+	background-color:#23A0A0;
 }
 #menu h1 a{
 	color:#FFFFFF;
@@ -15,20 +15,19 @@
 	padding-left: 0px;
 }
 
-nav ul li{
+nav ul li, nav ul li a{
 	font-family: Verdana;	
 	font-size: 14px;
 	margin-top:20px;
 	margin-right:1px;
 	text-decoration:none;	
-	color:#FFFFFF;
+	color:#FFFFFF !important;
     font-size: 16px;
-	padding: 10px;
-	border-radius: 10px;
-	border-color: #202C39;
-	background-color: #202C39;
+	border-color: #23A0A0;
+	background-color: #23A0A0;
 	border-style: solid;
 	outline: none;
+
 }
 
 
@@ -37,21 +36,21 @@ nav ul li:last-child
 	margin-right: 120px;
 }
 
-nav ul li:hover
+/*nav ul li:hover,*/ nav ul li a:hover
 {
 	color: #FFF;
-	text-decoration: none;
-	background-color: #283845;
-	border-color: #202C39;
+	text-decoration: none !important;
+	background-color: #30ADAD;
+	border-color: #30ADAD;
 	border-style: solid;
 	outline: none;
 }
 
 nav ul li input
 {
-    padding: 3px;
+    padding: 20px;
     width: 180px;
-	border-color:#202C39;
+	border-color:#247BA0;
 	border-style: solid;
 	outline: none;
 }
@@ -80,10 +79,10 @@ div form button
 {
 	padding: 10px;
 	width: 100px;
-	background-color: #202C39;
+	background-color: #23A0A0;
 	color: #FFF;
 	margin-top: 10px;
-	border-color: #202C39;
+	border-color: #23A0A0;
 	border-style: solid;
 	border-radius: 10px;
 	outline: none;
@@ -93,7 +92,7 @@ div form button:hover
 {
 	color: #FFF;
 	text-decoration: none;
-	background-color: #283845;
-	border-color: #283845;
+	background-color: #30ADAD;
+	border-color: #30ADAD;
 	outline: none;
 }
