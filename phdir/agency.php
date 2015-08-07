@@ -54,7 +54,7 @@
 					<td><?php echo $a['region'];?></td>
 					<td><?php echo $a['status'];?></td>
 					<td width="110px">
-					<?php if($a['status']==0){?>
+					<?php if($a['status']=='I'){?>
     					<a href="active.php?id=<?php echo $a['agencyID'];?>">Activate</a>
     				<?php }
     				else {?>	
@@ -83,15 +83,12 @@
 					<td><?php echo $s['region'];?></td>
 					<td><?php echo $s['status'];?></td>
 					<td width="110px">
-						<div class="dropdown">
-  							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    						<span class="caret"></span>
-  							</button>
-  							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    							<li><a href="active.php?id=<?php echo $a['agencyID'];?>">Activate</a></li>
-    							<li><a href="deactivate.php?id=<?php echo $a['agencyID'];?>">Deactivate</a></li>
-  							</ul>
-						</div>
+					<?php if($a['status']=='I'){?>
+    					<a href="active.php?id=<?php echo $a['agencyID'];?>">Activate</a>
+    				<?php }
+    				else {?>	
+    					<a href="deactivate.php?id=<?php echo $a['agencyID'];?>">Deactivate</a>
+    				<?php }?>
 					</td>
 			</tr>
 			<?php } ?>

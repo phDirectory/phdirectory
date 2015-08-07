@@ -29,13 +29,14 @@
 			<nav>
 			<ul class="list-inline">
 				<li><a href="index.php">Home</a></li>
+				<li><a href="index.php?page=user">User</a></li>
 				<li><a href="index.php?page=agency">Agency</a></li>
 				<li><a href="index.php?page=news">News</a></li>
 				<li><a href="index.php?page=services">Services</a></li>
 				<li><a href="index.php?page=notification">notification</a></li>
 				<li><a href="index.php?page=inquiry">inquiry</a></li>
 				<li><a href="index.php?page=subscription">subscription</a></li>
-				<li><a href="#">Logout</a></li>
+				<li><a href="logout.php">Logout</a></li>
 			</ul>
 			</nav>
 			</div>
@@ -43,7 +44,7 @@
 	
 		<div id="content">
 		<?php 
-			if($page=="home"||$page=="agency"||$page=="news"||$page=="services"||$page=="notification"||$page=="inquiry"||$page=="subscription"){
+			if($page=="home"||$page=="agency"||$page=="news"||$page=="services"||$page=="notification"||$page=="inquiry"||$page=="subscription"||$page=="user"||$page=="news-add"){
 				include_once($page.".php");
 			}
 			else{

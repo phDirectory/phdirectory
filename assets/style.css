@@ -123,3 +123,17 @@ button a, button a:hover
 {
 	min-width:100px;
 }
+
+.form-group
+{
+	width:50%;
+}
+.form-control, .btn
+{
+	margin:10px;
+}
+#form-label
+{
+	margin-left:10px;
+}
+

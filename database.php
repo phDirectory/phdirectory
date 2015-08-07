@@ -11,16 +11,26 @@
 
     function login($username,$password)
     {
-       $result=get("admin","*","where username=".quoted($username)." AND password=".quoted($password));
-        if(empty($result))
+        $result1=get("admin","*","where username=".quoted($username)." AND password=".quoted($password));
+        $result2=get("agency_user","*","where username=".quoted($username)." AND password=".quoted($password));
+        /*if(empty($result))
         {
             return null;
         }
-        else
+        else*/
+        if(!empty($result1))
         {
 			//add session
 			header('Location:phdir/');
-        }
+        }else if(!empty($result2))
+        {
+			//add session
+			$data = $result2[0];
+			if($data["agencyUserType"]=="A")
+				header('Location:agencyadmin/');
+			else if($data["agencyUserType"]=="M")
+				header('Location:agencyuser/');
+        }else return null;
     }
 
 	function subscribe($array)
@@ -34,11 +44,12 @@
 
 		if(empty($result1)&&empty($result2)&&empty($result3)&&$passmatch)
 		{
-			$sql="insert into agency(agencyName,email,phoneNo)values(?,?,?)";
+			$sql="insert into agency(agencyName,email,phoneNo,status)values(?,?,?,?)";
 			$query = connect();
 			$query->prepare($sql)->execute(array($_POST["agencyname"],
 											   	$_POST["agencyemail"],
-												$_POST["agencyphone"]
+												$_POST["agencyphone"],
+												"I"
 											   ));
 			$agencyID = $query->lastInsertId();
 
@@ -68,7 +79,7 @@
 			return $ret;
 		}
 	}
-
+//////////////////////////////////////////////////////////////////////////////////////////////
 	function conn()
 	{
 		return new PDO("mysql:host=localhost;dbname=phdirectory_db","root","");
@@ -105,7 +116,7 @@
 	function status_activate($id)
 	{
 		$db = conn();
-		$sql = "UPDATE agency SET status = 1 WHERE agencyID = $id"; 
+		$sql = "UPDATE agency SET status = 'A' WHERE agencyID = $id"; 
 		$result = $db->prepare($sql);
 		$result->execute();
 	}
@@ -113,7 +124,7 @@
 	function status_deactivate($id)
 	{
 		$db = conn();
-		$sql = "UPDATE agency SET status = 0 WHERE agencyID = $id"; 
+		$sql = "UPDATE agency SET status = 'I' WHERE agencyID = $id"; 
 		$result = $db->prepare($sql);
 		$result->execute();
 	}
