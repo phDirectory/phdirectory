@@ -26,23 +26,45 @@
 	function subscribe($array)
 	{
 		$email=$_POST["agencyemail"];
-		$result=get("agency","*","where email='$email'");
-		if(empty($result))
+		$username=$_POST["username"];
+		$result1=get("agency","*","where email='$email'");
+		$result2=get("agency_user","*","where username='$username'");
+		$result3=get("admin","*","where username='$username'");
+		$passmatch = $_POST["password"] == $_POST["cpassword"];
+
+		if(empty($result1)&&empty($result2)&&empty($result3)&&$passmatch)
 		{
 			$sql="insert into agency(agencyName,email,phoneNo)values(?,?,?)";
-			connect()->prepare($sql)->execute(array($_POST["agencyname"],
+			$query = connect();
+			$query->prepare($sql)->execute(array($_POST["agencyname"],
 											   	$_POST["agencyemail"],
 												$_POST["agencyphone"]
 											   ));
-			$ret=array();
-			$ret["ok"]=true;
-			return $ret;
+			$agencyID = $query->lastInsertId();
+
+			$sql="insert into agency_user(agencyID,agencyUserType,username,password,fullname,contactNo,status)values(?,?,?,?,?,?,?)";
+			connect()->prepare($sql)->execute(array($agencyID,"A",$_POST["username"],
+											   	$_POST["password"],
+												$_POST["fullname"],
+												$_POST["contactNo"],"A"
+											   ));
+
+			header("Location: index.php?page=success");
+			// $ret=array();
+			// $ret["ok"]=true;
+			// return $ret;
 		}
 		else 
 		{
 			$ret=array();
 			$ret["ok"]=false;
-			$ret["message"]="Email is already used";
+			if(!empty($result1)){
+				$ret["message"]="Email is already used";
+			}else if(!empty($result2)||!empty($result3)){
+				$ret["message"]="<br>Username is already used";
+			}else if(!$passmatch){
+				$ret["message"]="<br>Username is already used";
+			}
 			return $ret;
 		}
 	}
