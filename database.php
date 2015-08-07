@@ -110,6 +110,14 @@
 		$result->execute();
 	}
 
+	function status_deactivate($id)
+	{
+		$db = conn();
+		$sql = "UPDATE agency SET status = 0 WHERE agencyID = $id"; 
+		$result = $db->prepare($sql);
+		$result->execute();
+	}
+
 	function sp()
 	{
 		$db = conn();
@@ -151,4 +159,11 @@
 		$s = $db->prepare($sql);
 		$s->execute(array($spname, $desc, $amount));
 		$db = null;
+	}
+
+	function getsubscription()
+	{
+		$db = conn();
+		$sql = "SELECT * FROM subscription ORDER BY subID";
+		$result = $db->query($sql)->fetchAll();
 	}	
