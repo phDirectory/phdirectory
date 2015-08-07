@@ -30,20 +30,21 @@
 <body style="background-image:url(images/bg.jpg); width:100%; background-repeat:no-repeat;">
     <div class="container-fluid" id="container">
         <div class="row" id="menu">
+
             <div class="col-lg-1">
                 <h1><a href="#">PHDirectory</a></h1>
 			</div>
+
 			<div class="pull-right">
-            <nav>
-            
-                <ul class="list-inline">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="index.php?page=about">About</a></li>
-                    <li><a href="index.php?page=contact">Contact</a></li>
-                	<li><a href="index.php?page=subscribe">Subscribe</a></li>
-                    <li><a href="index.php?page=login">Login</a></li>
-                </ul>
-            </nav>
+            	<nav class='dropdown-menu-left'>
+                	<ul class="list-inline">
+                	    <li><a href="index.php">Home</a></li>
+                	    <li><a href="index.php?page=about">About</a></li>
+                	    <li><a href="index.php?page=contact">Contact</a></li>
+               		 	<li><a href="index.php?page=subscribe">Subscribe</a></li>
+                	    <li><a href="index.php?page=login">Login</a></li>
+                	</ul>
+            	</nav>
             </div>
          
         </div>

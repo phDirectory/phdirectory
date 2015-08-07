@@ -41,7 +41,7 @@
 	
 		<div id="content">
 		<?php 
-			if($page=="home"||$page=="agency"||$page=="subplan"||$page=="sub"||$page=="report"){
+			if($page=="home"||$page=="agency"||$page=="subplan"||$page=="sub"||$page=="report"||$page=="subplan-add"||$page=="editsp"){
 				include_once($page.".php");
 			}
 			else{
