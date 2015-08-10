@@ -55,10 +55,10 @@
 					<td><?php echo $a['status'];?></td>
 					<td width="110px">
 					<?php if($a['status']=='I'){?>
-    					<a href="active.php?id=<?php echo $a['agencyID'];?>">Activate</a>
+    					<a href="agency-activate.php?id=<?php echo $a['agencyID'];?>">Activate</a>
     				<?php }
     				else {?>	
-    					<a href="deactivate.php?id=<?php echo $a['agencyID'];?>">Deactivate</a>
+    					<a href="agency-deactivate.php?id=<?php echo $a['agencyID'];?>">Deactivate</a>
     				<?php }?>
 					</td>
 				</tr>

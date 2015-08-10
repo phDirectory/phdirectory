@@ -2,6 +2,7 @@
 	include_once('database.php');
 	$arr = array();
 	$array=array();
+	
 	if(isset($_POST['login']))
 	{
 		$arr = login($_POST["email"],$_POST["password"]);

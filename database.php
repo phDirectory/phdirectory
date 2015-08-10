@@ -1,6 +1,6 @@
 <?php
     include_once"helper.php";
-	connectTo("phdirectory_db");
+	//connectTo("phdirectory_db");
 	session_start();
     function logout()
     {
@@ -21,11 +21,13 @@
         if(!empty($result1))
         {
 			//add session
+			$_SESSION["userData"] = $result1[0];
 			header('Location:phdir/');
         }else if(!empty($result2))
         {
 			//add session
 			$data = $result2[0];
+			$_SESSION["userData"] = $data;
 			if($data["agencyUserType"]=="A")
 				header('Location:agencyadmin/');
 			else if($data["agencyUserType"]=="M")
@@ -45,7 +47,7 @@
 		if(empty($result1)&&empty($result2)&&empty($result3)&&$passmatch)
 		{
 			$sql="insert into agency(agencyName,email,phoneNo,status)values(?,?,?,?)";
-			$query = connect();
+			$query = conn();
 			$query->prepare($sql)->execute(array($_POST["agencyname"],
 											   	$_POST["agencyemail"],
 												$_POST["agencyphone"],
@@ -54,7 +56,7 @@
 			$agencyID = $query->lastInsertId();
 
 			$sql="insert into agency_user(agencyID,agencyUserType,username,password,fullname,contactNo,status)values(?,?,?,?,?,?,?)";
-			connect()->prepare($sql)->execute(array($agencyID,"A",$_POST["username"],
+			conn()->prepare($sql)->execute(array($agencyID,"A",$_POST["username"],
 											   	$_POST["password"],
 												$_POST["fullname"],
 												$_POST["contactNo"],"A"

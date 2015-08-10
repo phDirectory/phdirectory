@@ -2,6 +2,8 @@
 	$arr = array();
 	include_once("../database.php");
 	 
+	
+
 	$page = "home";
 	if(isset($_GET["page"])){
 		$page = $_GET["page"];
@@ -29,13 +31,13 @@
 			<nav>
 			<ul class="list-inline">
 				<li><a href="index.php">Home</a></li>
-				<li><a href="index.php?page=user">User</a></li>
+				<li><a href="index.php?page=moderators">Moderators</a></li>
 				<li><a href="index.php?page=agency">Agency</a></li>
 				<li><a href="index.php?page=news">News</a></li>
 				<li><a href="index.php?page=services">Services</a></li>
-				<li><a href="index.php?page=notification">notification</a></li>
-				<li><a href="index.php?page=inquiry">inquiry</a></li>
-				<li><a href="index.php?page=subscription">subscription</a></li>
+				<li><a href="index.php?page=notification">Notification</a></li>
+				<li><a href="index.php?page=inquiry">Inquiry</a></li>
+				<li><a href="index.php?page=subscription">Subscription</a></li>
 				<li><a href="logout.php">Logout</a></li>
 			</ul>
 			</nav>
@@ -44,7 +46,7 @@
 	
 		<div id="content">
 		<?php 
-			if($page=="home"||$page=="agency"||$page=="news"||$page=="services"||$page=="notification"||$page=="inquiry"||$page=="subscription"||$page=="user"||$page=="news-add"){
+			if($page=="home"||$page=="moderator-edit"||$page=="moderators-add"||$page=="moderators"||$page=="agency"||$page=="news"||$page=="services"||$page=="notification"||$page=="inquiry"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"){
 				include_once($page.".php");
 			}
 			else{
