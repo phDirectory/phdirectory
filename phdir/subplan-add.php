@@ -18,9 +18,9 @@
 		<form method="post">
 		<div>
 			<h2>New Subscription Plan</h2>
-			<input type="text" name="spname" placeholder="Subscription Name" required>
-			<input type="text" name="desc" placeholder="Description" required>
-			<input type="text" name="amount" placeholder="amount" required>
+			<input type="text" name="spname" placeholder="Subscription Name" class="form-control" required>
+			<input type="text" name="desc" placeholder="Description" class="form-control" required>
+			<input type="text" name="amount" placeholder="amount" class="form-control" required>
 			<input type="submit" name="add" value="Add" class="btn btn-primary">
 		</div>
 		</form>

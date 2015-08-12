@@ -1,139 +1,74 @@
 
-#menu
+.navbar-default
 {
-	background-color:#23A0A0;	
+	background-color:#23A0A0 !important;	
+	border-color:#23A0A0 !important;
 }
 
-#menu h1 a
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav>li>a
 {
-	color:#FFFFFF;
-	/*margin-top:15px;*/
-    /*padding-left: 180px;*/
-    text-decoration: none;
-	font-weight: bolder;
-	margin: 0px;
+	color: #FFF !important;
 }
 
-#content
+.navbar-default .navbar-nav>li>a:hover
 {
-	margin-left: 0px;
-	padding-left: 0px;
+	background-color: #25A8A8 !important;
 }
 
-nav, nav ul, nav ul li
+.btn-primary a
 {
-	height: 69px;
+	color: #FFF !important;
 }
 
-nav ul li, nav ul li a
+a:hover
 {
-	font-family: Verdana;	
-	font-size: 16px;
-	text-decoration:none;	
-	color:#FFFFFF !important;
-	border-color: #23A0A0;
-	background-color: #23A0A0;
-	border-style: solid;
-	outline: none;
-	padding: 10px;
-	height: 100%;
-	margin-bottom: 0px;
-}
-
-
-nav ul li:last-child
-{
-	margin-right: 100px;
-}
-
-nav ul li a:hover
-{
-	color: #FFF;
 	text-decoration: none !important;
-	background-color: #30ADAD;
-	border-color: #30ADAD;
-	border-style: solid;
-	outline: none;
 }
 
-nav ul li input
+.form-control
 {
-    padding: 20px;
-    width: 180px;
-	border-color:#247BA0;
-	border-style: solid;
-	outline: none;
+	margin: 0px !important;
+}
+input.form-control
+{
+	margin-bottom: 1% !important;
 }
 
-#content div h1
+form
 {
-    margin-right: 300px;
-	font-weight: bolder;
-	margin-top: 50px;
-	color: #283845;
+	margin: 0px !important;
 }
 
-#content div form input
+li a.list-group-item
 {
-	margin-top:10px;
-	padding:6px;
-	border-radius: 5px;
-	border-color:#D2D7DB;
-	width: 300px;
-	font-size: 14px;
-	border-style: solid;
-	outline: none;
+	text-decoration: none !important;
+}
+a.list-group-item:hover
+{
+	color:#FFF !important;
+	background-color: #25A8A8 !important;
 }
 
-div form button
+a #active
 {
-	padding: 10px;
-	width: 100px;
-	background-color: #23A0A0;
-	color: #FFF;
-	margin-top: 10px;
-	border-color: #23A0A0;
-	border-style: solid;
-	border-radius: 10px;
-	outline: none;
+	color:#FFF !important;
+	background-color: #25A8A8 !important;
 }
 
-div form button:hover
+button.btn.btn-primary, input.btn.btn-primary
 {
-	color: #FFF;
-	text-decoration: none;
-	background-color: #30ADAD;
-	border-color: #30ADAD;
-	outline: none;
+	background-color:#23A0A0 !important;	
+	border-color:#23A0A0 !important;
 }
 
-#search-box, #search
+button.btn.btn-primary:hover, input.btn.btn-primary:hover
 {
-	margin-top:10px;
+	background-color:#25A8A8 !important;	
+	border-color:#25A8A8 !important;
 }
 
-button a, button a:hover
+div#content.container
 {
-	color: #FFF;
-	margin-top: 20px;
-	text-decoration: none;
+	width:100% !important;
 }
-
-#dropdown
-{
-	min-width:100px;
-}
-
-.form-group
-{
-	width:50%;
-}
-.form-control, .btn
-{
-	margin:10px;
-}
-#form-label
-{
-	margin-left:10px;
-}
-

@@ -16,6 +16,7 @@
 					<td>Information</td>
 					<td>Date Posted</td>
 					<td>Date Edited</td>
+					<td>Website</td>
 				<tr>
 			</thead>
 			

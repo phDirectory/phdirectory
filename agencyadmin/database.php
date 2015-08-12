@@ -23,7 +23,7 @@
 	{
 		$userData = $_SESSION["userData"];
 		$db = conn();
-		$sql = "SELECT * FROM news WHERE status = 'A' && agencyID = '".$userData["agencyID"]."' ORDER BY newsID";
+		$sql = "SELECT * FROM news WHERE status = 'A' && agencyID = '".$userData["agencyID"]."' ORDER BY newsType";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db = null;
@@ -99,4 +99,23 @@
 		$result = $db->query($sql)->fetch();
 		return $result;
 		$db = null;
+	}
+
+	/////////////////////////////////////////////////////////////
+
+
+	function getallservices()
+	{
+		$userData = $_SESSION["userData"];
+		$db = conn();
+		$sql = "SELECT * FROM services ORDER BY serviceID";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+
+	function addservice($arr)
+	{
+		$userData = $_SESSION["userData"];
+		connection()->exec("INSERT INTO services(serviceName, serviceType, details,agencyID)VALUES('".$arr['servicename']."','".$arr['servicetype']."','".$arr['details']."','".$userdata['agencyID']."',)");
 	}
