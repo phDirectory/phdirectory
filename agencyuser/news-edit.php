@@ -28,7 +28,7 @@
 			<label id="form-label">Type</label>
 			<select name="newstype" class="form-control" required>
 				<?php
-					$array=array("News","Job Posting","Announcement");
+					$array=array("News","Job Posting","Announcement","Event");
 					foreach ($array as $value) {
 						if($n["newsType"]==$value)
 							echo'<option value="'.$value.'" selected>'.$value.'</option>';

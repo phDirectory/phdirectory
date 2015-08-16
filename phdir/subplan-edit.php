@@ -13,7 +13,7 @@
 		}
 	}
 	$s = getsp($id);
-?>
+?>	
 
 <html>
 	<head><title>PH directory - sub plan add</title></head>
@@ -21,9 +21,9 @@
 		<form method="post">
 		<div>
 			<h2>New Subscription Plan</h2>
-			<input type="text" name="spname" placeholder="Subscription Name" value="<?php echo $s['SPName']?>" required>
-			<input type="text" name="desc" placeholder="Description" value="<?php echo $s['description']?>" required>
-			<input type="text" name="amount" placeholder="amount" value="<?php echo $s['amount']?>" required>
+			<input type="text" name="spname" placeholder="Subscription Name" class="form-control" value="<?php echo $s['SPName']?>" required>
+			<input type="text" name="desc" placeholder="Description" class="form-control" value="<?php echo $s['description']?>" required>
+			<input type="text" name="amount" placeholder="amount" class="form-control" 	value="<?php echo $s['amount']?>" required>
 			<input type="submit" name="add" value="Save" class="btn btn-primary">
 		</div>
 		</form>

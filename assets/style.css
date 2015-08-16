@@ -72,3 +72,53 @@ div#content.container
 {
 	width:100% !important;
 }
+
+table tr td:first-child
+{
+	text-align: right !important;
+	font-weight: bolder;
+}
+
+table
+{
+	font-size: 12px;
+}
+
+#panel, #editpass,#panel-fullname,#edit-fname,#panel-contact,#edit-contact,#user 
+{
+    padding: 5px;
+    background-color: #EFEFEF;
+    border: solid 1px #c3c3c3;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    color:#000000;
+}
+#editpass, #edit-fname, #edit-contact
+{
+	cursor: pointer;
+}
+
+#panel,#panel-fullname,#panel-contact
+ {
+    padding: 50px;
+    display: none;
+    text-align: center;
+
+}
+
+#input
+{
+	margin: 3px;
+
+}
+#input input
+{
+	padding: 5px;
+	border-radius: 5px;
+	border: solid 1px #c3c3c3;
+}
+span.second
+{
+	margin-left: 20%;
+}

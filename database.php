@@ -179,4 +179,26 @@
 		$db = conn();
 		$sql = "SELECT * FROM subscription ORDER BY subID";
 		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
 	}	
+
+	function find_admin()
+	{
+		$id=$_SESSION['userData']['adminID'];
+		$db=conn();
+		$sql = "SELECT * FROM admin WHERE adminID = $id";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db = null;
+	}
+
+	function adminpass_edit($pass)
+	{
+		$id=$_SESSION['userData']['adminID'];
+		$db = conn();
+		$sql = "UPDATE admin SET password = ? WHERE adminID = $id";
+		$s = $db->prepare($sql);
+		$s->execute(array($pass['pass1']));
+		$db = null;
+	}

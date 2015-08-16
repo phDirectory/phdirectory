@@ -35,8 +35,9 @@
                 </button>
                 <a class="navbar-brand" href="#">PHdirectory</a>
               </div>
-              <div id="navbar" class="collapse navbar-collapse">
+              <div id="navbar" class="collapse navbar-collapse pull-right">
                 <ul class="nav navbar-nav">
+	              <li><a href="index.php?page=admin-account">Profile</a></li>
                   <li><a href="logout.php">Logout</a></li>
                 </ul>
               </div><!-- /.nav-collapse -->
@@ -55,7 +56,7 @@
             
             <p> 
               <?php 
-                if($page=="home"||$page=="agency"||$page=="subplan"||$page=="sub"||$page=="report"||$page=="subplan-add"||$page=="subplan-edit"){
+                if($page=="home"||$page=="admin-account"||$page=="agency"||$page=="subplan"||$page=="sub"||$page=="report"||$page=="subplan-add"||$page=="subplan-edit"){
                   include_once($page.".php");
                 }
                 else{

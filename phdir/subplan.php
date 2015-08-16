@@ -29,7 +29,7 @@ include_once"../database.php";
 					<td><?php echo $a['SPName'];?></td>
 					<td><?php echo $a['description'];?></td>
 					<td><?php echo $a['amount'];?></td>
-					<td><a href="index.php?page=editsp&id=<?php echo $a['SPID'] ?>">Edit</a></td>
+					<td><a href="index.php?page=subplan-edit&id=<?php echo $a['SPID'] ?>">Edit</a></td>
 					<td><a href="subplan-delete.php?id=<?php echo $a['SPID'] ?>">Delete</a></td>
 				</tr>
 			<?php 

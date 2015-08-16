@@ -77,7 +77,7 @@
 	function deleteMod($id) 
 	{
 		$db = connection();// tungod wala gi include sa index ang delete.php mao di makita ang conn()
-		$sql = "UPDATE agency_user SET status = 'I' WHERE agencyUserID = $id ";
+		$sql = "UPDATE agency_user SET status = 'I' WHERE agencyUserId = $id ";
 		$s = $db->prepare($sql);
 		$s->execute();
 		$db = null;
@@ -142,11 +142,13 @@
 		$db = null;
 	}
 
-	function getaccount()
+////////////////////////
+
+		function getaccount()
 	{
-		$id = $_SESSION["userData"]['agencyID'];
+		$id = $_SESSION["userData"]['agencyUserID'];
 		$db = conn();
-		$sql = "SELECT * FROM agency_user WHERE agencyID = $id"; 
+		$sql = "SELECT * FROM agency_user WHERE agencyUserID = $id"; 
 		$result = $db->query($sql)->fetch();
 		return $result;
 		$db = null;
@@ -179,54 +181,5 @@
 		$sql = "UPDATE agency_user SET contactNo = ? WHERE agencyUserID = $id";
 		$s = $db->prepare($sql);
 		$s->execute(array($contact['contact']));
-		$db = null;
-	}
-/////////////////////////////////////////////////event 
-
-	function get_event()
-	{
-		$db = conn();
-		$sql = "SELECT * FROM events ORDER BY title";
-		$result = $db->query($sql)->fetchAll();
-		return $result;
-		$db = null;
-	}
-
-	function event_add($arr)
-	{
-		$date = date('Y-m-d');
-		$db = conn();
-		$id=$_SESSION['userData']['agencyID'];
-		$sql = "INSERT INTO events(title, datePosted, info, event_date, agencyID, status) VALUES(?,?,?,?,$id,'A')";
-		$s = $db->prepare($sql);
-		$s->execute(array($arr['title'],$date,$arr['info'],$arr['event-date']));
-	}
-
-	function find_event()
-	{
-		$id=$_SESSION['userData']['agencyID'];
-		$db = conn();
-		$sql = "SELECT * FROM events WHERE agencyID = $id";
-		$result = $db->query($sql)->fetch();
-		return $result;
-		$db = null;
-	}
-
-	function event_edit($arr)
-	{
-		$id=$_SESSION['userData']['agencyID'];
-		$date_edit = date("Y-m-d");
-		$db = conn();
-		$sql = "UPDATE events SET title = ?, info = ?, event_date=?, dateEdited=? WHERE agencyID = $id";
-		$s = $db->prepare($sql);
-		$s->execute(array($arr['title'], $arr['info'], $arr['event-date'],$date_edit));
-		$db = null;
-	}
-	function event_delete($id) 
-	{
-		$db = connection();// tungod wala gi include sa index ang delete.php mao di makita ang conn()
-		$sql = "UPDATE events SET status = 'I' WHERE eventID = $id ";
-		$s = $db->prepare($sql);
-		$s->execute();
 		$db = null;
 	}

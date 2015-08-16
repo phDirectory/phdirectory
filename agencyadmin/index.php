@@ -39,9 +39,9 @@
           </button>
           <a class="navbar-brand" href="#">PHdirectory</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div id="navbar" class="collapse navbar-collapse pull-right">
           <ul class="nav navbar-nav">
-            <li><a href="index.php?page=agency">Profile</a></li>
+            <li><a href="index.php?page=agency-account">Profile</a></li>
             <li><a href="logout.php">Logout</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -59,13 +59,13 @@
           <div class="jumbotron">
           
           <p>	<?php 
-					if($page=="home"||$page=="moderator-edit"||$page=="moderators-add"||$page=="moderators"||$page=="agency"||$page=="news"||$page=="service-add"||$page=="services"||$page=="notification"||$page=="inquiry"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"){
+					 if($page=="home"||$page=="moderator-edit"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="notification"||$page=="inquiry"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"){
 						include_once($page.".php");
-					}
-					else{
-					echo "Page Not Found!";
-					}
-			?></p>
+					 }
+					 else{
+					   echo "Page Not Found!";
+					 }
+			    ?></p>
           </div>
           
         </div><!--/.col-xs-12.col-sm-9-->
@@ -74,12 +74,13 @@
           <div class="list-group">
             <a href="index.php" class="list-group-item">Home</a>
             <a href="index.php?page=agency" class="list-group-item">Agency</a>
-			<a href="index.php?page=moderators" class="list-group-item">Moderators</a>
-			<a href="index.php?page=news" class="list-group-item">News</a>
-			<a href="index.php?page=services" class="list-group-item">Services</a>
-			<a href="index.php?page=notification" class="list-group-item">Notification</a>
-			<a href="index.php?page=inquiry" class="list-group-item">Inquiry</a></li>
-			<a href="index.php?page=subscription" class="list-group-item">Subscription</a>
+			      <a href="index.php?page=moderators" class="list-group-item">Moderators</a>
+			      <a href="index.php?page=news" class="list-group-item">News</a>
+			      <a href="index.php?page=services" class="list-group-item">Services</a>
+            <a href="index.php?page=event" class="list-group-item">Event</a>
+			      <a href="index.php?page=notification" class="list-group-item">Notification</a>
+			      <a href="index.php?page=inquiry" class="list-group-item">Inquiry</a></li>
+			      <a href="index.php?page=subscription" class="list-group-item">Subscription</a>
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
