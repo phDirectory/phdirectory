@@ -44,10 +44,11 @@ li a.list-group-item
 {
 	text-decoration: none !important;
 }
-a.list-group-item:hover
+a.list-group-item:hover, .active
 {
 	color:#FFF !important;
 	background-color: #25A8A8 !important;
+	border-color:#25A8A8 !important;
 }
 
 a #active
@@ -99,6 +100,11 @@ table
 	cursor: pointer;
 }
 
+#editpass:hover, #edit-fname:hover, #edit-contact:hover
+{
+	background-color: #DFDFDF;
+}
+
 #panel,#panel-fullname,#panel-contact
  {
     padding: 50px;
@@ -121,4 +127,20 @@ table
 span.second
 {
 	margin-left: 20%;
+}
+#inquiry-title
+{
+	font-weight: bold;
+}
+#mess
+{
+	margin:10px;
+}
+
+#inquiry-content
+{
+	border: solid 1px #c3c3c3;
+    border-right: none;
+    border-left: none;
+    border-top: none;
 }

@@ -59,7 +59,7 @@
           <div class="jumbotron">
           
           <p>	<?php 
-					 if($page=="home"||$page=="moderator-edit"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="notification"||$page=="inquiry"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"){
+					 if($page=="home"||$page=="moderator-edit"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"){
 						include_once($page.".php");
 					 }
 					 else{
@@ -88,7 +88,6 @@
       <hr>
 
     </div><!--/.container-->
-
-
 	</body>
+
 </html>

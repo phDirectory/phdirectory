@@ -101,27 +101,54 @@
 		$db = null;
 	}
 
-	/////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////service
 
 
 	function getallservices()
 	{
-		$userData = $_SESSION["userData"];
+		$userData = $_SESSION["userData"]["agencyID"];
 		$db = conn();
-		$sql = "SELECT * FROM services ORDER BY serviceID";
+		$sql = "SELECT * FROM services where agencyID = $userData ORDER BY serviceID";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db = null;
 	}
 
+	function find_service($id)
+	{
+		$db = conn();
+		$sql = "SELECT * FROM services WHERE serviceID = $id";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db=null;
+	}
+
 	function addservice($arr)
 	{
-		$userData = $_SESSION["userData"];
-		connection()->exec("INSERT INTO services(serviceName, serviceType, details,agencyID)VALUES('".$arr['servicename']."','".$arr['servicetype']."','".$arr['details']."','".$userdata['agencyID']."',)");
+		$userData = $_SESSION["userData"]['agencyID'];
+		connection()->exec("INSERT INTO services(serviceName, serviceType, details,agencyID,status)VALUES('".$arr['servicename']."','".$arr['servicetype']."','".$arr['details']."','".$userData."','A')");
 		
 	}
 
-	/////////////////////////////////////////////agency profile
+	function service_edit($arr)
+	{
+		$id=$_GET['id'];
+		$db = conn();
+		$sql = "UPDATE services SET serviceName = ?, serviceType = ?, details = ? WHERE serviceID = $id";
+		$s = $db->prepare($sql);
+		$s->execute(array($arr['servicename'], $arr['servicetype'], $arr['details']));
+	}
+
+	function service_delete($id)
+	{
+		$db = connection();// tungod wala gi include sa index ang delete.php mao di makita ang conn()
+		$sql = "UPDATE services SET status = 'I' WHERE serviceID = $id ";
+		$s = $db->prepare($sql);
+		$s->execute();
+		$db = null;
+	}
+
+/////////////////////////////////////////////agency profile
 
 	function getagency($id)
 	{
@@ -229,4 +256,15 @@
 		$s = $db->prepare($sql);
 		$s->execute();
 		$db = null;
+	}
+
+	//////////////////////////////////////
+	function get_inquiry()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT * FROM inquiry ORDER BY date_inquire desc";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$sb=null;
 	}

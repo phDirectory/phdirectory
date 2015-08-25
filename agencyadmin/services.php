@@ -21,17 +21,20 @@
 			<?php 
 				foreach ($services as $a) 
 				{
+					if($a['status']=='A')
+					{
 			?>
-				<tr>
-					<td><?php echo $a['serviceID'];?></td>
-					<td><?php echo $a['serviceName'];?></td>
-					<td><?php echo $a['serviceType'];?></td>
-					<td><?php echo $a['details'];?></td>
-
-					<td><a href="index.php?page=news-edit&id=<?php echo $a['serviceID'];?>">Edit</a></td>
-					<td><a href="news-delete.php?id=<?php echo $a['serviceID'] ?>">Delete</a></td>
-				</tr>
+						<tr>
+							<td><?php echo $a['serviceID'];?></td>
+							<td><?php echo $a['serviceName'];?></td>
+							<td><?php echo $a['serviceType'];?></td>
+							<td><?php echo $a['details'];?></td>
+		
+							<td><a href="index.php?page=service-edit&id=<?php echo $a['serviceID']?>">Edit</a></td>
+							<td><a href="service-delete.php?id=<?php echo $a['serviceID']?>">Delete</a></td>
+						</tr>
 			<?php 
+					}
 				} 
 			?>
 

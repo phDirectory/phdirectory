@@ -21,6 +21,8 @@
 			<?php 
 				foreach ($services as $a) 
 				{
+					if($a['status']=='A')
+					{
 			?>
 				<tr>
 					<td><?php echo $a['serviceID'];?></td>
@@ -30,7 +32,8 @@
 
 					<td><a href="index.php?page=news-edit&id=<?php echo $a['serviceID'];?>">Edit</a></td>
 				</tr>
-			<?php 
+			<?php
+					} 
 				} 
 			?>
 

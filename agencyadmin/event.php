@@ -1,7 +1,6 @@
 <?php
 	include_once('database.php');
 	$event = get_event();
-	$e = find_event();
 ?>
 <html>
 	<head><title>PH directory - News Management</title></head>
