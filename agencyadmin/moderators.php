@@ -24,11 +24,10 @@
 					<td><?php echo $a['contactNo'];?></td>
 					<td><?php echo $a['status'];?></td>
 					<td><a href="index.php?page=moderator-edit&id=<?php echo $a['agencyUserID'] ?>">Edit</a></td>
-					<td><a href="moderators-delete.php?id=<?php echo $a['agencyUserID'] ?>">Delete</a></td>
+					<td><a href="moderators-delete.php?id=<?php echo $a['agencyUserID'] ?>" onclick="return confirm('Are you sure you want to delete this moderator?');">Delete</a></td>
 				</tr>
 			<?php 
 				} 
 			?>
-
 
 		</table>

@@ -21,7 +21,6 @@
 				<option>News</option>
 				<option>Job Posting</option>
 				<option>Announcement</option>
-				<option>Event</option>
 			</select>
 			<label id="form-label">Title</label>
 			<input type="text" name="title" id="title" placeholder="Title" class="form-control" required>

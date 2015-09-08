@@ -46,11 +46,11 @@
 
 $(function(){
 	$("#editpass").click(function(){
-		$("#panel").slideToggle("slow");
+		$("#panel").slideDown("slow");
 	});
 	$("#toggle").click(function(event){
 		event.preventDefault();
-		$('#editpass').click();
+		$('#panel').slideUp('slow');
 	});
 });
 </script>

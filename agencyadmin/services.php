@@ -4,7 +4,7 @@
 ?>
 
 <html>
-	<head><title>PH directory - News Management</title></head>
+	<head><title>PH directory</title></head>
 	<body>
 		<button class="btn btn-primary"><a href="index.php?page=service-add">Add Services</a></button>
 
@@ -31,7 +31,7 @@
 							<td><?php echo $a['details'];?></td>
 		
 							<td><a href="index.php?page=service-edit&id=<?php echo $a['serviceID']?>">Edit</a></td>
-							<td><a href="service-delete.php?id=<?php echo $a['serviceID']?>">Delete</a></td>
+							<td><a href="service-delete.php?id=<?php echo $a['serviceID']?>" onclick="return confirm('Are you sure you want to delete this services?');">Delete</a></td>
 						</tr>
 			<?php 
 					}
@@ -40,5 +40,6 @@
 
 
 		</table>
+
 	</body>
 </html>

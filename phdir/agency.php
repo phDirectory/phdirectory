@@ -5,7 +5,6 @@
 	{
 		$search = search_agency($_POST["search-box"]);
 	}	
-
 ?>
 <html>
 	<head><title>PH directory - Subscriber</title></head>
@@ -14,7 +13,7 @@
 		<form method="post" class="form-inline">
 		<div class="form-group">
 			<input type="text" id="search-box" name="search-box" placeholder="search" class="form-control">
-			<input type="submit" value="search" name="search" class="btn btn-primary">
+			<input type="submit" value="search" name="search" class="btn btn-primary form-control">
 		</div>
 		</form>
 
@@ -26,8 +25,7 @@
 					<td>Email</td>
 					<td>Phone No.</td>
 					<td>info</td>
-					<td>Organization</td>
-					<td colspan="4">Address</td>
+					<td>Address</td>
 					<td>Region</td>
 					<td>Status</td>
 					<td></td>
@@ -46,19 +44,15 @@
 					<td><?php echo $a['email'];?></td>
 					<td><?php echo $a['phoneNo'];?></td>
 					<td><?php echo $a['info'];?></td>
-					<td><?php echo $a['organization'];?></td>
-					<td><?php echo $a['houseNo'];?></td>
-					<td><?php echo $a['StreetAddress'];?></td>
-					<td><?php echo $a['barangayAddress'];?></td>
-					<td><?php echo $a['cityAddress'];?></td>
+					<td><?php echo $a['houseNo']." ".$a['StreetAddress']." ".$a['barangayAddress']." ".$a['cityAddress'];?></td>
 					<td><?php echo $a['region'];?></td>
 					<td><?php echo $a['status'];?></td>
-					<td width="110px">
+					<td>
 					<?php if($a['status']=='I'){?>
-    					<a href="agency-activate.php?id=<?php echo $a['agencyID'];?>">Activate</a>
+    					<a href="agency-activate.php?id=<?php echo $a['agencyID'];?>" onclick="return confirm('Are you sure you want to activate this agency?');">Activate</a>
     				<?php }
     				else {?>	
-    					<a href="agency-deactivate.php?id=<?php echo $a['agencyID'];?>">Deactivate</a>
+    					<a href="agency-deactivate.php?id=<?php echo $a['agencyID'];?>" onclick="return confirm('Are you sure you want to deactivate this agency?');">Deactivate</a>
     				<?php }?>
 					</td>
 				</tr>
@@ -75,19 +69,15 @@
 					<td><?php echo $s['email'];?></td>
 					<td><?php echo $s['phoneNo'];?></td>
 					<td><?php echo $s['info'];?></td>
-					<td><?php echo $s['organization'];?></td>
-					<td><?php echo $s['houseNo'];?></td>
-					<td><?php echo $s['StreetAddress'];?></td>
-					<td><?php echo $s['barangayAddress'];?></td>
-					<td><?php echo $s['cityAddress'];?></td>
+					<td><?php echo $s['houseNo'].' '.$s['StreetAddress'].' '.$s['barangayAddress'].' '.$s['cityAddress'];?></td>
 					<td><?php echo $s['region'];?></td>
 					<td><?php echo $s['status'];?></td>
-					<td width="110px">
-					<?php if($a['status']=='I'){?>
-    					<a href="active.php?id=<?php echo $a['agencyID'];?>">Activate</a>
+					<td>
+					<?php if($s['status']=='I'){?>
+    					<a href="agency-activate.php?id=<?php echo $s['agencyID'];?>" onclick="return confirm('Are you sure you want to activate this agency?');">Activate</a>
     				<?php }
     				else {?>	
-    					<a href="deactivate.php?id=<?php echo $a['agencyID'];?>">Deactivate</a>
+    					<a href="agency-deactivate.php?id=<?php echo $s['agencyID'];?>" onclick="return confirm('Are you sure you want to deactivate this agency?');">Deactivate</a>
     				<?php }?>
 					</td>
 			</tr>

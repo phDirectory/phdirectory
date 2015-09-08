@@ -1,7 +1,7 @@
 	<?php
 	include_once('database.php');
 	$id = $_GET['id'];
-	if(isset($_POST['create-mod']))
+	if(isset($_POST['edit-mod']))
 	{
 		$uname = $_POST['username'];
 		$pass = $_POST['password'];
@@ -32,7 +32,30 @@
 		<label id="form-label">Contact Number</label>
 		<input type="text" name="contactNo" id="contactNo" placeholder="Contact Number" class="form-control" value = "<?php echo $n['contactNo']?>" required>
 		
-		<input type="submit" class="btn btn-primary" name="create-mod" value="Edit">
+		<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Edit">
 		
 		</div>
+
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Delete</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Are you sure you want to edit this moderator account?</p>
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="submit" class="btn btn-primary" name="edit-mod">Edit</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		      </div>
+		    </div>
+		
+		  </div>
+		</div>
 </form>
+

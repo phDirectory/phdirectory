@@ -1,7 +1,7 @@
 <?php
 	include_once('database.php');
 	$account = getaccount();
-		if(isset($_POST['fname']))
+	if(isset($_POST['fname']))
 	{
 		fname_edit($_POST);
 		header('Location:index.php?page=agency-account');
@@ -19,9 +19,9 @@
 			if($_POST['pass1']==$_POST['pass2'])
 			{
 				pass_edit($_POST);
-				header('Location:index.php?page=agency-account');
+				//header('Location:index.php?page=agency-account');
 			}
-		}
+		}	
 	}
 ?>
 
@@ -40,11 +40,11 @@
 				<span class="pull-right">Edit</span>
 			</div>
 			<div id="panel">
-				<div id="input"><input type="password" name="currentpass" id="password" placeholder="Current"></div>
-				<div id="input"><input type="password" name="pass1" id="password" placeholder="New" ></div>
-				<div id="input"><input type="password" name="pass2" id="password" placeholder="Retype New" ></div>
+				<div id="input"><input type="password" name="currentpass" id="currentpass" placeholder="Current"></div>
+				<div id="input"><input type="password" name="pass1" id="pass1" placeholder="New"></div>
+				<div id="input"><input type="password" name="pass2" id="pass2" placeholder="Retype New"></div>
 				<span>
-					<input type="submit" value="save changes" name="pass" class="btn btn-primary">
+					<input type="submit" value="save changes" name="pass" class="btn btn-primary" id="pass">
 				</span>
 				<span>
 					<button class="btn" id="toogle1">cancel</button>
@@ -90,47 +90,40 @@
 	</body>
 <script>
 $(function(){
-	$("#editpass").click(function(){
-		$("#panel").slideToggle("slow");
-		togglePrev("#panel");
+	$('#editpass').click(function(){
+		$("#panel-fullname").slideUp("slow");
+		$("#panel-contact").slideUp("slow");
+		$('#panel').slideDown('slow');
 	});
 	$("#edit-contact").click(function(){
-		$("#panel-contact").slideToggle("slow");
-		togglePrev("#panel-contact");
+		$('#panel').slideUp('slow');
+		$("#panel-fullname").slideUp("slow");
+		$("#panel-contact").slideDown("slow");
 	});
 	$("#edit-fname").click(function(){
-		$("#panel-fullname").slideToggle("slow");
-		togglePrev("#panel-fullname");
+		$('#panel').slideUp('slow');
+		$("#panel-contact").slideUp("slow");
+		$("#panel-fullname").slideDown("slow");
 	});
+
 	$("#toogle1").click(function(event){
 		event.preventDefault();
-		$('#editpass').click();
+		$('#panel').slideUp('slow');
 	});
 	$("#toogle2").click(function(event){
 		event.preventDefault();
-		$('#edit-fname').click();
+		$("#panel-fullname").slideUp("slow");
 	});
 	$("#toogle3").click(function(event){
 		event.preventDefault();
-		$('#edit-contact').click();
+		$("#panel-contact").slideUp("slow");
 	});
 
-	var prev=null;
-	function togglePrev(id)
-	{
-		if(prev!=null)
-		{
-			if(prev!=id)
-			{
-				$(prev).slideToggle("slow");
-				prev=id;
-			}
-			else 
-				prev=null;
-		}
-		else
-			prev=id;
-	}
+	$('#pass').click(function(){
+		$("#currentpass").val();
+		$('#panel').slideDown('slow');
+	});
+	
 });
 </script>
 </html>

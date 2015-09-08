@@ -212,8 +212,9 @@
 
 	function get_event()
 	{
+		$id=$_SESSION['userData']['agencyID'];
 		$db = conn();
-		$sql = "SELECT * FROM events ORDER BY title";
+		$sql = "SELECT * FROM events WHERE status = 'A' and agencyID = $id";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db = null;
@@ -229,11 +230,10 @@
 		$s->execute(array($arr['title'],$date,$arr['info'],$arr['event-date']));
 	}
 
-	function find_event()
+	function find_event($id)
 	{
-		$id=$_SESSION['userData']['agencyID'];
 		$db = conn();
-		$sql = "SELECT * FROM events WHERE agencyID = $id";
+		$sql = "SELECT * FROM events WHERE eventID = $id";
 		$result = $db->query($sql)->fetch();
 		return $result;
 		$db = null;
@@ -241,10 +241,10 @@
 
 	function event_edit($arr)
 	{
-		$id=$_SESSION['userData']['agencyID'];
+		$id= $_GET['id'];
 		$date_edit = date("Y-m-d");
 		$db = conn();
-		$sql = "UPDATE events SET title = ?, info = ?, event_date=?, dateEdited=? WHERE agencyID = $id";
+		$sql = "UPDATE events SET title = ?, info = ?, event_date=?, dateEdited=? WHERE eventID = $id";
 		$s = $db->prepare($sql);
 		$s->execute(array($arr['title'], $arr['info'], $arr['event-date'],$date_edit));
 		$db = null;

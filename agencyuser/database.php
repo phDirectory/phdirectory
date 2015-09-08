@@ -183,3 +183,61 @@
 		$s->execute(array($contact['contact']));
 		$db = null;
 	}
+
+	function find_service($id)
+	{
+		$db = conn();
+		$sql = "SELECT * FROM services WHERE serviceID = $id";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db=null;
+	}
+
+	function service_edit($arr)
+	{
+		$id=$_GET['id'];
+		$db = conn();
+		$sql = "UPDATE services SET serviceName = ?, serviceType = ?, details = ? WHERE serviceID = $id";
+		$s = $db->prepare($sql);
+		$s->execute(array($arr['servicename'], $arr['servicetype'], $arr['details']));
+	}
+
+	function event_add($arr)
+	{
+		$date = date('Y-m-d');
+		$db = conn();
+		$id=$_SESSION['userData']['agencyID'];
+		$sql = "INSERT INTO events(title, datePosted, info, event_date, agencyID, status) VALUES(?,?,?,?,$id,'A')";
+		$s = $db->prepare($sql);
+		$s->execute(array($arr['title'],$date,$arr['info'],$arr['event-date']));
+	}
+
+	function find_event($id)
+	{
+		$db = conn();
+		$sql = "SELECT * FROM events WHERE eventID = $id";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db = null;
+	}
+
+
+	function event_edit($arr)
+	{
+		$id=$_SESSION['userData']['agencyID'];
+		$date_edit = date("Y-m-d");
+		$db = conn();
+		$sql = "UPDATE events SET title = ?, info = ?, event_date=?, dateEdited=? WHERE agencyID = $id";
+		$s = $db->prepare($sql);
+		$s->execute(array($arr['title'], $arr['info'], $arr['event-date'],$date_edit));
+		$db = null;
+	}
+	function get_event()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT * FROM events WHERE agencyID = $id and status = 'A' ORDER BY title";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}

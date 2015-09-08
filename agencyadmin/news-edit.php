@@ -46,9 +46,33 @@
 			<label id="form-label">Website link</label>
 			<input type="text" name="link" id="link" placeholder="website link" class="form-control" value="<?php echo $n['link']?>">
 
-			<input type="submit" class="btn btn-primary" name="add_news" value="Submit">
+			<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#news-edit-modal" value="Edit">
+		</div>
+
+
+		<!-- Modal -->
+		<div id="news-edit-modal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Delete</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Are you sure you want to edit this <?php echo $n['newsType']?>?</p>
+		      </div>
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-primary" name="add_news" value="Edit">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		
+		  </div>
 		</div>	
 	</form>
+	
 	<script src="../assets/jquery.min.js"></script>
 	<script>
 		$(function(){

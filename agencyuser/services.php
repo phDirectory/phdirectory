@@ -30,7 +30,7 @@
 					<td><?php echo $a['serviceType'];?></td>
 					<td><?php echo $a['details'];?></td>
 
-					<td><a href="index.php?page=news-edit&id=<?php echo $a['serviceID'];?>">Edit</a></td>
+					<td><a href="index.php?page=service-edit&id=<?php echo $a['serviceID'];?>">Edit</a></td>
 				</tr>
 			<?php
 					} 

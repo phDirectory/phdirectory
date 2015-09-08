@@ -9,7 +9,7 @@
 ?>
 <html>
 	<body>
-		<span>Agency details</span>
+		<span>Agency details</span><button class="btn btn-primary pull-right"><a href="index.php?page=agency-edit">Edit</a></button>
 		<table class="table">
 			<tr>
 				<td>Agency Name:</td>
@@ -32,7 +32,8 @@
 				<td><?php echo $agency['houseNo']." ";
 						  echo $agency['StreetAddress'].", ";
 						  echo $agency['barangayAddress'].", ";
-						  echo $agency['cityAddress'];?></td>	
+						  echo $agency['cityAddress'];?>
+				</td>	
 			</tr>
 		</table>
 	</body>

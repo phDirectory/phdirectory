@@ -1,7 +1,7 @@
 <?php
 	include_once('database.php');
 		$id = $_GET['id'];
-	if(isset($_POST['add_news']))
+	if(isset($_POST['edit_news']))
 	{
 		if(isset($_POST['newstype'])&&isset($_POST['title'])&&isset($_POST['info']))
 		{
@@ -28,7 +28,7 @@
 			<label id="form-label">Type</label>
 			<select name="newstype" class="form-control" required>
 				<?php
-					$array=array("News","Job Posting","Announcement","Event");
+					$array=array("News","Job Posting","Announcement");
 					foreach ($array as $value) {
 						if($n["newsType"]==$value)
 							echo'<option value="'.$value.'" selected>'.$value.'</option>';
@@ -46,7 +46,30 @@
 			<label id="form-label">Website link</label>
 			<input type="text" name="link" id="link" placeholder="website link" class="form-control" value="<?php echo $n['link']?>">
 
-			<input type="submit" class="btn btn-primary" name="add_news" value="Submit">
+			<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#news-edit-modal" value="Submit">
+		</div>
+
+
+		<!-- Modal -->
+		<div id="news-edit-modal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Delete</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Are you sure you want to edit this <?php echo $n['newsType']?>?</p>
+		      </div>
+		      <div class="modal-footer">
+		      	<input type="submit" class="btn btn-primary" name="edit_news" value="Edit">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		
+		  </div>
 		</div>	
 	</form>
 	<script src="../assets/jquery.min.js"></script>

@@ -33,13 +33,11 @@
 					<td><?php echo $a['dateEdited'];?></td>
 					<td><?php echo $a['link'];?></td>
 					<td><a href="index.php?page=news-edit&id=<?php echo $a['newsID'];?>">Edit</a></td>
-					<td><a href="news-delete.php?id=<?php echo $a['newsID'] ?>">Delete</a></td>
+					<td><a href="news-delete.php?id=<?php echo $a['newsID'] ?>" onclick="return confirm('Are you sure you want to delete this news?');">Delete</a></td>
 				</tr>
 			<?php 
 				} 
 			?>
-
-
 		</table>
 	</body>
 </html>

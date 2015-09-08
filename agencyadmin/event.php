@@ -5,7 +5,7 @@
 <html>
 	<head><title>PH directory - News Management</title></head>
 	<body>
-		<button class="btn btn-primary"><a href="index.php?page=event-add">Add News</a></button>
+		<button class="btn btn-primary"><a href="index.php?page=event-add">Add Event</a></button>
 
 		<table class="table">
 			<thead>
@@ -34,8 +34,8 @@
 							<td><?php echo $e['eventStatus'];?></td>
 							<td><?php echo $e['datePosted'];?></td>
 							<td><?php echo $e['dateEdited'];?></td>
-							<td><a href="index.php?page=event-update">Edit</a></td>
-							<td><a href="event-delete.php?id=<?php echo $e['eventID'] ?>">Delete</a></td>
+							<td><a href="index.php?page=event-update&id=<?php echo $e['eventID']; ?>">Edit</a></td>
+							<td><a href="event-delete.php?id=<?php echo $e['eventID'] ?>" onclick="return confirm('Are you sure you want to delete this event?');">delete</a></td>
 						</tr>
 			<?php 
 					}
@@ -43,5 +43,6 @@
 			
 			?>
 		</table>
+
 	</body>
 </html>

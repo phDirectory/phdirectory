@@ -12,7 +12,6 @@
 		editagency($_POST);
 		header("Location:index.php?page=agency");
 	}
-
 ?>
 <html>
 	<body>
@@ -54,9 +53,34 @@
 			</tr>
 			<tr>
 			<td></td>
-			<td><input type="submit" class="btn btn-primary" name="submit"></td>
+			<td>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit</button>
+				<button class="btn btn-default"><a href="index.php?page=agency" style="color:#000;">back</a></button>
+			</td>
 			</tr>
 		</table>
+
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Edit</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Are you sure you want to change the agency details?</p>
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="submit" class="btn btn-primary" name="submit">Edit</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		      </div>
+		    </div>
+		
+		  </div>
+		</div>
 		</form>
 	</body>
 </html>

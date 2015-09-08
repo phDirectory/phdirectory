@@ -8,7 +8,6 @@
         session_destroy();
 		header("Location:../index.php");
     }
-
     function login($username,$password)
     {
         $result1=get("admin","*","where username=".quoted($username)." AND password=".quoted($password));
@@ -32,7 +31,9 @@
 				header('Location:agencyadmin/');
 			else if($data["agencyUserType"]=="M")
 				header('Location:agencyuser/');
-        }else return null;
+        }
+        else 
+        	return null;
     }
 
 	function subscribe($array)
@@ -43,6 +44,7 @@
 		$result2=get("agency_user","*","where username='$username'");
 		$result3=get("admin","*","where username='$username'");
 		$passmatch = $_POST["password"] == $_POST["cpassword"];
+		$ret = true;
 
 		if(empty($result1)&&empty($result2)&&empty($result3)&&$passmatch)
 		{
@@ -71,12 +73,23 @@
 		{
 			$ret=array();
 			$ret["ok"]=false;
-			if(!empty($result1)){
-				$ret["message"]="Email is already used";
-			}else if(!empty($result2)||!empty($result3)){
-				$ret["message"]="<br>Username is already used";
-			}else if(!$passmatch){
-				$ret["message"]="<br>Username is already used";
+			$ret['ok-username'] = true;
+			$ret['ok-email'] = true;
+			$ret['ok-pass'] = true;
+			if(!empty($result1))
+			{
+				$ret['ok-email'] = false;
+				$ret["message-email"]="Email is already used";
+			}
+			if(!empty($result2)||!empty($result3))
+			{
+				$ret['ok-username'] = false;
+				$ret["message-user"]="Username is already used";
+			}
+			if(!$passmatch)
+			{
+				$ret['ok-pass'] = false;
+				$ret["message-pass"]="Password did not match";
 			}
 			return $ret;
 		}

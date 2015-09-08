@@ -11,7 +11,7 @@
 ?>
 
 <html>
-<head><title>PH directory - Add news</title></head>
+<head><title>PH directory - Add Event</title></head>
 <body>
 	<h2>Add Event</h2>
 	<form method="post" class="form-horizontal">

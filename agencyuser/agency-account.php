@@ -90,49 +90,36 @@
 
 $(function(){
 	$("#editpass").click(function(){
-		$("#panel").slideToggle("slow");
-		togglePrev("#panel");
+		$('#panel-fullname').slideUp('slow');
+		$('#panel-contact').slideUp('slow');
+		$("#panel").slideDown("slow");
 	});
 
 	$("#edit-contact").click(function(){
-		$("#panel-contact").slideToggle("slow");
-		togglePrev("#panel-contact");
+		$('#panel-fullname').slideUp('slow');
+		$('#panel').slideUp('slow');
+		$("#panel-contact").slideDown("slow");
 	});
 
 	$("#edit-fname").click(function(){
-		$("#panel-fullname").slideToggle("slow");
-		togglePrev("#panel-fullname");
+		$('#panel').slideUp('slow');
+		$('#panel-contact').slideUp('slow');
+		$("#panel-fullname").slideDown("slow");
 	});
 
 	$("#toogle1").click(function(event){
 		event.preventDefault();
-		$('#editpass').click();
+		$('#panel').slideUp('slow');
 	});
 	$("#toogle2").click(function(event){
 		event.preventDefault();
-		$('#edit-fname').click();
+		$('#panel-fullname').slideUp('slow');
 	});
 	$("#toogle3").click(function(event){
 		event.preventDefault();
-		$('#edit-contact').click();
+		$('#panel-contact').slideUp('slow');
 	});
 
-	var prev=null;
-	function togglePrev(id)
-	{
-		if(prev!=null)
-		{
-			if(prev!=id)
-			{
-				$(prev).slideToggle("slow");
-				prev=id;
-			}
-			else 
-				prev=null;
-		}
-		else
-			prev=id;
-	}
 });
 </script>
 </html>
