@@ -215,3 +215,12 @@
 		$s->execute(array($pass['pass1']));
 		$db = null;
 	}
+
+	function get_events()
+	{
+		$db = conn();
+		$sql = "SELECT * FROM events WHERE status = 'A'";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}

@@ -2,11 +2,10 @@
 	$arr = array();
 	include_once("../database.php");
 	 
-	$page = "home";
+	$page = "agency";
 	if(isset($_GET["page"])){
 		$page = $_GET["page"];
 	}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,7 +55,7 @@
             
             <p> 
               <?php 
-                if($page=="home"||$page=="admin-account"||$page=="agency"||$page=="subplan"||$page=="sub"||$page=="report"||$page=="subplan-add"||$page=="subplan-edit"){
+                if($page=="admin-account"||$page=="agency"||$page=="subplan"||$page=="sub"||$page=="report"||$page=="subplan-add"||$page=="subplan-edit"){
                   include_once($page.".php");
                 }
                 else{

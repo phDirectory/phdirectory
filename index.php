@@ -28,11 +28,11 @@
 <head>
 <title>PHdirectory</title>
 <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
 <link href="assets/style.css" rel="stylesheet">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/css/offcanvas.css" rel="stylesheet">
@@ -47,14 +47,12 @@
 
 		$('#calendar').fullCalendar({
 			defaultDate: '2015-09-20',
-			editable: true,
+			editable: false,
 			eventLimit: true, // allow "more" link when too many events
-			events: [
-				{
-					title: "weeeh",
-					start: '2015-09-07',
-				}
-			]
+			events: {
+        url: 'get-events.php'
+        
+        }
 		});
 		
 	});
@@ -62,20 +60,21 @@
 </script>
 <style>
 
-	body {
+	body 
+  {
 		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 		font-size: 14px;
     background-color: #eee;
 	}
 
-	#calendar {
+	#calendar 
+  {
 		max-width: 900px;
 		margin: 0 auto;
     background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 3px;
 	}
-
 </style>
 </head>
 <body>
@@ -106,8 +105,7 @@
 	
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
-      <?php if($page == "home"){ 
-      	?>
+    <?php if($page == "home"){ ?>
       	<div id='calendar'></div>
       <?php }else if($page == "about"){ ?>
         <div class="jumbotron">
@@ -135,7 +133,7 @@
               <div class="contain">
               <div id="err-msg"><?php if(isset($_POST['login']))echo $err; ?></div>
               <form method="post">
-                  <input type="text" name="email" placeholder="Username" class="form-control" value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>" required>
+                  <input type="text" name="email" placeholder="Username" class="form-control" value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>" required autofocus>
                   <input type="password" name="password" placeholder="Password" class="form-control" required>
                   <button type="submit" name="login" class="btn btn-lg btn-primary btn-block">Login</button>
               </form>
@@ -158,11 +156,11 @@
                   <?php
                   if(empty($array))
                   {
-                    echo '<input type="text" name="username" placeholder=" Username" class="form-control" required>';
+                    echo '<input type="text" name="username" placeholder=" Username" class="form-control" required autofocus>';
                   }
                   else if($array['ok'])
                   {
-                    echo '<input type="text" name="username" placeholder=" Username" class="form-control" required>';
+                    echo '<input type="text" name="username" placeholder=" Username" class="form-control" required autofocus>';
                   }
                   else if(!$array['ok'])
                   {
@@ -249,7 +247,7 @@
       }
   }
   function showPosition(position) {
-      $("#lat").val(position.coords.latitude);
+    $("#lat").val(position.coords.latitude);
     $("#long").val(position.coords.longitude);
   }
 </script>

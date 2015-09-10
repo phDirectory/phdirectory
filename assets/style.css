@@ -1,9 +1,10 @@
-body
+body 
 {
 	background-color: #eee !important;
 }
 .jumbotron
 {
+	border-radius: 3px !important;
 	background-color: #fff !important;
 }
 .navbar-default
@@ -91,7 +92,7 @@ div.box
 	margin-right: 30%;
 	margin-bottom: 1%;
 	padding: 20px;
-	border-radius: 5px;
+	border-radius: 3px;
 	background-color: #fff;
 	box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
 }
@@ -174,20 +175,10 @@ span.second
 #err-msg
 {
 	color:#FF0000;
+	font-weight: bold;
 }
 #search-box
 {
 	padding-right:450px;
 }
 
-hr.star-primary {
-    border-color: #2c3e50;
-}
-hr.star-light, hr.star-primary {
-    margin: 25px auto 30px;
-    padding: 0;
-    max-width: 250px;
-    border: 0;
-    border-top: solid 5px;
-    text-align: center;
-}

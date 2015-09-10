@@ -2,7 +2,7 @@
 	$arr = array();
 	include_once("../database.php");
 	 
-	$page = "home";
+	$page = "agency";
 	if(isset($_GET["page"])){
 		$page = $_GET["page"];
 	}
@@ -58,7 +58,7 @@
           
           <p> 
           <?php 
-            if($page=="home"||$page=="agency"||$page=="agency-edit"||$page=="agency-account"||$page=="news"||$page=="news-edit"||$page=="news-add"||$page=="event"||$page=="event-update"||$page=="event-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"){
+            if($page=="agency"||$page=="agency-edit"||$page=="agency-account"||$page=="news"||$page=="news-edit"||$page=="news-add"||$page=="event"||$page=="event-update"||$page=="event-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"){
               include_once($page.".php");
             }
             else{
@@ -73,7 +73,6 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
-            <a href="index.php" class="list-group-item">Home</a>
             <a href="index.php?page=agency" class="list-group-item">Agency</a>
             <a href="index.php?page=news" class="list-group-item">News</a>
             <a href="index.php?page=event" class="list-group-item">Event</a>

@@ -7,7 +7,7 @@
 	}	
 ?>
 <html>
-	<head><title>PH directory - Subscriber</title></head>
+	<head><title>PH directory - Agency</title></head>
 	<link rel="stylesheet" type="text/css" href="../assets/style.css">
 	<body>
 		<form method="post" class="form-inline">
@@ -17,7 +17,7 @@
 		</div>
 		</form>
 
-		<table class="table">
+		<table class="table" id="agency-table">
 			<thead>
 				<tr>
 					<td>Agency No.</td>
@@ -82,8 +82,6 @@
 					</td>
 			</tr>
 			<?php } ?>
-
 		</table>
-
 	</body>
 </html>

@@ -2,7 +2,7 @@
 	$arr = array();
 	include_once("../database.php");
 	 
-	$page = "home";
+	$page = "agency";
 	if(isset($_GET["page"])){
 		$page = $_GET["page"];
 	}
@@ -59,7 +59,7 @@
           <div class="jumbotron">
           
           <p>	<?php 
-					 if($page=="home"||$page=="moderator-edit"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"){
+					 if($page=="moderator-edit"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"){
 						include_once($page.".php");
 					 }
 					 else{
@@ -72,7 +72,6 @@
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
-            <a href="index.php" class="list-group-item">Home</a>
             <a href="index.php?page=agency" class="list-group-item">Agency</a>
 			      <a href="index.php?page=moderators" class="list-group-item">Moderators</a>
 			      <a href="index.php?page=news" class="list-group-item">News</a>
