@@ -224,3 +224,42 @@
 		return $result;
 		$db = null;
 	}
+	////////////////////////////////
+
+	function getAllNewsForMobile()
+	{
+		$db = conn();
+		$sql = "SELECT * FROM news WHERE status = 'A' ORDER BY datePosted";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+
+	function registerForMobile($username, $password, $email, $fullname, $phoneNo){
+
+		$sql="insert into mobile_user(username,password,email,fullname,phoneNo)values(?,?,?,?,?)";
+		$result = conn()->prepare($sql)->execute(array($username,$password,$email,$fullname,$phoneNo));
+
+		return $result;
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
