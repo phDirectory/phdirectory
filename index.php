@@ -48,11 +48,16 @@
 		$('#calendar').fullCalendar({
 			defaultDate: '2015-09-20',
 			editable: false,
-			eventLimit: true, // allow "more" link when too many events
+			eventLimit: true,
+       // allow "more" link when too many events
 			events: {
         url: 'get-events.php'
-        
-        }
+        },
+      eventClick: function(calEvent, jsEvent, view) {
+        //alert('Event id: ' + calEvent.id);
+        window.open('viewevent.php?eventid='+calEvent.id,'_blank');
+
+    }
 		});
 		
 	});

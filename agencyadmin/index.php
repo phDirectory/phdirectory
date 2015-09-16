@@ -59,7 +59,7 @@
           <div class="jumbotron">
           
           <p>	<?php 
-					 if($page=="moderator-edit"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"){
+					 if($page=="moderator-edit"||$page=="files"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="inq-reply"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"||$page=="availsp"){
 						include_once($page.".php");
 					 }
 					 else{
@@ -79,6 +79,7 @@
             <a href="index.php?page=event" class="list-group-item">Event</a>
 			      <a href="index.php?page=notification" class="list-group-item">Notification</a>
 			      <a href="index.php?page=inquiry" class="list-group-item">Inquiry</a></li>
+            <a href="index.php?page=files" class="list-group-item">Files</a>
 			      <a href="index.php?page=subscription" class="list-group-item">Subscription</a>
           </div>
         </div><!--/.sidebar-offcanvas-->

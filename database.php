@@ -224,7 +224,15 @@
 		return $result;
 		$db = null;
 	}
-	////////////////////////////////
+
+	function find_events($id)
+	{
+		$db=conn();
+		$sql = "SELECT * FROM events WHERE eventID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}	////////////////////////////////
 
 	function getAllNewsForMobile()
 	{

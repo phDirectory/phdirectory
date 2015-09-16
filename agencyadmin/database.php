@@ -263,8 +263,74 @@
 	{
 		$id = $_SESSION['userData']['agencyID'];
 		$db = conn();
-		$sql = "SELECT * FROM inquiry ORDER BY date_inquire desc";
+		$sql = "SELECT * FROM inquiry WHERE agencyID = $id";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
-		$sb=null;
+		$db=null;
+	}
+
+	function add_inquiry($mID, $title, $message)
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$date = date('Y-m-d');
+		conn()->exec("INSERT INTO inquiry(agencyID, title, date_inquire, message, mobileID)VALUES('".$id."','".$title."','".$date."','".$message."','".$mID."')");
+	}
+	/////////////////////////////////////////
+	function find_subplan()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT subscriptions.startDate, subscriptions.endDate,subscription_plan.SPName, subscription_plan.description
+		  FROM subscriptions 
+		  INNER JOIN subscription_plan
+		  WHERE subscriptions.SPID = subscription_plan.SPID AND subscriberID = $id";
+		  $result = $db->query($sql)->fetchAll();
+		  return $result;
+		  $db = null;
+	}
+
+	function get_sp()
+	{
+		$db = conn();
+		$sql = "SELECT * FROM subscription_plan";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
+	}
+
+	function find_sp($id)
+	{
+		$db = conn();
+		$sql = "SELECT amount FROM subscription_plan WHERE SPID = $id";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db=null;
+	}
+
+	function add_sp($id, $amt)
+	{
+		$db = conn();
+		$agencyid = $_SESSION['userData']['agencyID'];
+		$sdate = date('Y-m-d');
+		$edate = date('Y-m-d', strtotime("+30 days"));
+		$type = 'A';
+		$db->exec("INSERT INTO subscriptions(SPID, subscriberID, startDate, endDate, subAmt, subtype)VALUES('".$id."','".$agencyid."','".$sdate."','".$edate."','".$amt."','".$type."')");
+		$db = null;
+	}
+	///////////////////////////////////files
+	function add_files($name)
+	{
+		$postId=$_SESSION["userData"]["agencyID"];
+		$date = date('Y-m-d');
+		conn()->exec("INSERT INTO downloads(postID, fileName, dateUploaded)VALUES('".$postId."','".$name."','".$date."')");
+	}
+
+	function get_files()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT * FROM downloads WHERE postID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
 	}

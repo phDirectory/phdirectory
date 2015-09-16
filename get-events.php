@@ -5,6 +5,7 @@ $json = get_events();
 $arr = array();
 foreach ($json as $value) {
 	$arr[] = array(
+		'id'=>$value['eventID'],
 		'title'=>$value['title'],
 		'start'=>$value['event_date']
 		);

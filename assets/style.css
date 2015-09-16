@@ -87,11 +87,23 @@ div#content.container
 }
 div.box
 {
-	background-color: #EEE;
 	margin-left: 30%;
 	margin-right: 30%;
 	margin-bottom: 1%;
 	padding: 20px;
+	border-radius: 3px;
+	background-color: #fff;
+	box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
+}
+
+div.box-event
+{
+	margin-top: 5%;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-bottom: 1%;	
+	padding: 20px;
+	font-size: 16px;
 	border-radius: 3px;
 	background-color: #fff;
 	box-shadow: 0 3px 10px rgba(0,0,0,.23),0 3px 10px rgba(0,0,0,.16);
@@ -182,3 +194,25 @@ span.second
 	padding-right:450px;
 }
 
+table.myTable td
+{
+	padding-right: 50px;
+}
+.fc-content {
+    cursor: pointer;
+}
+
+a.btn-reply
+{
+	background-color: #23A0A0;
+	border: #23A0A0 solid;
+	color: #fff;
+	border-radius: 3px;
+	padding: 1px;
+}
+a.btn-reply:hover
+{
+	background-color: #25A8A8;
+	border-color: #25A8A8;
+	color: #fff;
+}
