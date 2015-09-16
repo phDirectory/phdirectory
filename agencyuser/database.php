@@ -241,3 +241,75 @@
 		return $result;
 		$db = null;
 	}
+
+		//////////////////////////////////////
+	function get_inquiry()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT * FROM inquiry WHERE agencyID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
+	}
+
+	function add_inquiry($mID, $title, $message)
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$date = date('Y-m-d');
+		conn()->exec("INSERT INTO inquiry(agencyID, title, date_inquire, message, mobileID)VALUES('".$id."','".$title."','".$date."','".$message."','".$mID."')");
+	}
+	/////////////////////////////////////////
+	function find_subplan()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT subscriptions.startDate, subscriptions.endDate,subscription_plan.SPName, subscription_plan.description
+		  FROM subscriptions 
+		  INNER JOIN subscription_plan ON subscriptions.SPID = subscription_plan.SPID
+		  WHERE subscriberID = $id ORDER BY subscriptions.endDate DESC LIMIT 1";
+		  $result = $db->query($sql)->fetchAll();
+		  return $result;
+		  $db = null;
+	}
+
+	function get_sp()
+	{
+		$db = conn();
+		$sql = "SELECT * FROM subscription_plan WHERE type = 'A'";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
+	}
+
+	function find_sp($id)
+	{
+		$db = conn();
+		$sql = "SELECT amount FROM subscription_plan WHERE SPID = $id";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db=null;
+	}
+
+	function add_sp($id, $amt)
+	{
+		$db = conn();
+		$agencyid = $_SESSION['userData']['agencyID'];
+		$date = find_subplan();
+		if(empty($date))
+		{
+			$sdate = date('Y-m-d');
+		}
+		else
+		{
+			foreach ($date as $s) {
+				$sdate = $s['endDate'];
+			}
+		}
+		$wdate = new DateTime($sdate);
+		$wdate->add(new DateInterval('P30D'));
+		$edate = $wdate->format('Y-m-d');
+		$type = 'A';
+		$db->exec("INSERT INTO subscriptions(SPID, subscriberID, startDate, endDate, subAmt, subtype)VALUES('".$id."','".$agencyid."','".$sdate."','".$edate."','".$amt."','".$type."')");
+		$db = null;
+	}

@@ -194,6 +194,16 @@
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db = null;
+	}
+
+	function check_sp()
+	{
+		$db = conn();
+		$id = $_SESSION['userData']['agencyID'];
+		$sql = "SELECT * FROM subscriptions WHERE subscriberID = $id AND CURDATE() between startDate and endDate";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
 	}	
 
 	function find_admin()

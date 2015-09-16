@@ -6,7 +6,7 @@
 	if(isset($_GET["page"])){
 		$page = $_GET["page"];
 	}
-
+  $sp = check_sp();
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,6 +24,17 @@
     <script src="../assets/bootstrap.min.js"></script>
     <script src="../assets/ie10-viewport-bug-workaround.js"></script>
     <script src="../assets/offcanvas.js"></script>
+<?php
+  if(empty($sp))
+  {
+    echo "
+    <script type='text/javascript'>
+    $(document).ready(function() {
+      $('a.disable').attr('href', 'index.php?page=error');
+    });
+    </script>";
+  }
+?>
 	</head>
 	<body>
 
@@ -59,7 +70,7 @@
           <div class="jumbotron">
           
           <p>	<?php 
-					 if($page=="moderator-edit"||$page=="files"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="inq-reply"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"||$page=="availsp"){
+					 if($page=="moderator-edit"||$page=="files"||$page=="error"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="inq-reply"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"||$page=="availsp"){
 						include_once($page.".php");
 					 }
 					 else{
@@ -73,13 +84,13 @@
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
             <a href="index.php?page=agency" class="list-group-item">Agency</a>
-			      <a href="index.php?page=moderators" class="list-group-item">Moderators</a>
-			      <a href="index.php?page=news" class="list-group-item">News</a>
-			      <a href="index.php?page=services" class="list-group-item">Services</a>
-            <a href="index.php?page=event" class="list-group-item">Event</a>
-			      <a href="index.php?page=notification" class="list-group-item">Notification</a>
-			      <a href="index.php?page=inquiry" class="list-group-item">Inquiry</a></li>
-            <a href="index.php?page=files" class="list-group-item">Files</a>
+			      <a href="index.php?page=moderators" class="list-group-item disable">Moderators</a>
+			      <a href="index.php?page=news" class="list-group-item disable">News</a>
+			      <a href="index.php?page=services" class="list-group-item disable">Services</a>
+            <a href="index.php?page=event" class="list-group-item disable">Event</a>
+			      <a href="index.php?page=notification" class="list-group-item disable">Notification</a>
+			      <a href="index.php?page=inquiry" class="list-group-item disable">Inquiry</a></li>
+            <a href="index.php?page=files" class="list-group-item disable">Files</a>
 			      <a href="index.php?page=subscription" class="list-group-item">Subscription</a>
           </div>
         </div><!--/.sidebar-offcanvas-->

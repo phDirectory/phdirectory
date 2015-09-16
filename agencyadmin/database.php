@@ -282,8 +282,8 @@
 		$db = conn();
 		$sql = "SELECT subscriptions.startDate, subscriptions.endDate,subscription_plan.SPName, subscription_plan.description
 		  FROM subscriptions 
-		  INNER JOIN subscription_plan
-		  WHERE subscriptions.SPID = subscription_plan.SPID AND subscriberID = $id";
+		  INNER JOIN subscription_plan ON subscriptions.SPID = subscription_plan.SPID
+		  WHERE subscriberID = $id ORDER BY subscriptions.endDate DESC LIMIT 1";
 		  $result = $db->query($sql)->fetchAll();
 		  return $result;
 		  $db = null;
@@ -292,7 +292,7 @@
 	function get_sp()
 	{
 		$db = conn();
-		$sql = "SELECT * FROM subscription_plan";
+		$sql = "SELECT * FROM subscription_plan WHERE type = 'A'";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db=null;
@@ -311,12 +311,25 @@
 	{
 		$db = conn();
 		$agencyid = $_SESSION['userData']['agencyID'];
-		$sdate = date('Y-m-d');
-		$edate = date('Y-m-d', strtotime("+30 days"));
+		$date = find_subplan();
+		if(empty($date))
+		{
+			$sdate = date('Y-m-d');
+		}
+		else
+		{
+			foreach ($date as $s) {
+				$sdate = $s['endDate'];
+			}
+		}
+		$wdate = new DateTime($sdate);
+		$wdate->add(new DateInterval('P30D'));
+		$edate = $wdate->format('Y-m-d');
 		$type = 'A';
 		$db->exec("INSERT INTO subscriptions(SPID, subscriberID, startDate, endDate, subAmt, subtype)VALUES('".$id."','".$agencyid."','".$sdate."','".$edate."','".$amt."','".$type."')");
 		$db = null;
 	}
+
 	///////////////////////////////////files
 	function add_files($name)
 	{

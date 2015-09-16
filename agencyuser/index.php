@@ -23,6 +23,17 @@
     <script src="../assets/bootstrap.min.js"></script>
     <script src="../assets/ie10-viewport-bug-workaround.js"></script>
     <script src="../assets/offcanvas.js"></script>
+    <?php
+  if(empty($sp))
+  {
+    echo "
+    <script type='text/javascript'>
+    $(document).ready(function() {
+      $('a.disable').attr('href', 'index.php?page=error');
+    });
+    </script>";
+  }
+?>
 	</head>
 	<body>
 
@@ -58,7 +69,7 @@
           
           <p> 
           <?php 
-            if($page=="agency"||$page=="agency-edit"||$page=="agency-account"||$page=="news"||$page=="news-edit"||$page=="news-add"||$page=="event"||$page=="event-update"||$page=="event-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"){
+            if($page=="agency"||$page=="error"||$page=="agency-edit"||$page=="agency-account"||$page=="inq-reply"||$page=="news"||$page=="news-edit"||$page=="news-add"||$page=="event"||$page=="event-update"||$page=="event-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"){
               include_once($page.".php");
             }
             else{
@@ -74,11 +85,11 @@
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
             <a href="index.php?page=agency" class="list-group-item">Agency</a>
-            <a href="index.php?page=news" class="list-group-item">News</a>
-            <a href="index.php?page=event" class="list-group-item">Event</a>
-            <a href="index.php?page=services" class="list-group-item">Services</a>
-            <a href="index.php?page=notification" class="list-group-item">Notification</a>
-            <a href="index.php?page=inquiry" class="list-group-item">Inquiry</a></li>
+            <a href="index.php?page=news" class="list-group-item disable">News</a>
+            <a href="index.php?page=event" class="list-group-item disable">Event</a>
+            <a href="index.php?page=services" class="list-group-item disable">Services</a>
+            <a href="index.php?page=notification" class="list-group-item disable">Notification</a>
+            <a href="index.php?page=inquiry" class="list-group-item disable">Inquiry</a></li>
             <a href="index.php?page=subscription" class="list-group-item">Subscription</a>
           </div>
         </div><!--/.sidebar-offcanvas-->
