@@ -307,7 +307,7 @@
 		$db=null;
 	}
 
-	function add_sp($id, $amt)
+	function add_sp($id)
 	{
 		$db = conn();
 		$agencyid = $_SESSION['userData']['agencyID'];
@@ -326,7 +326,7 @@
 		$wdate->add(new DateInterval('P30D'));
 		$edate = $wdate->format('Y-m-d');
 		$type = 'A';
-		$db->exec("INSERT INTO subscriptions(SPID, subscriberID, startDate, endDate, subAmt, subtype)VALUES('".$id."','".$agencyid."','".$sdate."','".$edate."','".$amt."','".$type."')");
+		$db->exec("INSERT INTO subscriptions(SPID, subscriberID, startDate, endDate, subtype)VALUES('".$id."','".$agencyid."','".$sdate."','".$edate."','".$type."')");
 		$db = null;
 	}
 

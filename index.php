@@ -236,8 +236,7 @@
                </form>
                  </div>
             </div>
-      
-      <?php } ?>
+      <?php }?>
     </div><!--/row-->
 </div><!--/.container-->
 

@@ -63,8 +63,8 @@
 												$_POST["fullname"],
 												$_POST["contactNo"],"A"
 											   ));
-
-			header("Location: index.php?page=success");
+			login($_POST['username'], $_POST['password']);
+			//header("Location: index.php?page=success");
 			// $ret=array();
 			// $ret["ok"]=true;
 			// return $ret;
@@ -259,6 +259,18 @@
 		$result = conn()->prepare($sql)->execute(array($username,$password,$email,$fullname,$phoneNo));
 
 		return $result;
+	}
+
+	function find_subscriber()
+	{
+		$db = conn();
+		$sql = "SELECT * FROM subscriptions 
+		  INNER JOIN subscription_plan ON subscriptions.SPID = subscription_plan.SPID
+		  INNER JOIN agency ON subscriptions.subscriberID = agency.agencyID 
+		  WHERE subtype = 'A' AND CURDATE() <= endDate";
+		  $result = $db->query($sql)->fetchAll();
+		  return $result;
+		  $db = null;
 	}
 	
 

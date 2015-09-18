@@ -24,32 +24,32 @@
 			</tr>
 			<tr>
 				<td>Agency Information:</td>
-				<td><input type='text' name='info' palceholder='information' class="form-control" value="<?php echo $agency['info'];?>"></td>	
+				<td><input type='text' name='info' placeholder='information' class="form-control" value="<?php echo $agency['info'];?>"></td>	
 			</tr>
 			<tr>
 				<td>Email:</td>
-				<td><input type='text' name='email' palceholder='Email' class="form-control" value="<?php echo $agency['email'];?>"></td>	
+				<td><input type='text' name='email' placeholder='Email' class="form-control" value="<?php echo $agency['email'];?>"></td>	
 			</tr>
 			<tr>
 				<td>Contact No.:</td>
-				<td><input type='text' name='phone' palceholder='Phone no.' class="form-control" value="<?php echo $agency['phoneNo'];?>"></td>	
+				<td><input type='text' name='phone' placeholder='Phone no.' class="form-control" value="<?php echo $agency['phoneNo'];?>"></td>	
 			</tr>
 			<tr>
 				<td>Address:</td>
-				<td><input type="text" name='house' class="form-control" value = "<?php echo $agency['houseNo'];?>"></td>
+				<td><input type="text" name='house' placeholder='house number' class="form-control" value = "<?php echo $agency['houseNo'];?>"></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="text" name='street' class="form-control" value = "<?php echo $agency['StreetAddress'];?>">
+				<td><input type="text" name='street' placeholder='Street' class="form-control" value = "<?php echo $agency['StreetAddress'];?>">
 				</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="text" name="barangay" class="form-control" value="<?php echo $agency['barangayAddress'];?>"></td>
+				<td><input type="text" name="barangay" placeholder='barangay' class="form-control" value="<?php echo $agency['barangayAddress'];?>"></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="text" name="city" class="form-control" value="<?php echo $agency['cityAddress'];?>"></td>	
+				<td><input type="text" name="city" placeholder='City' class="form-control" value="<?php echo $agency['cityAddress'];?>"></td>	
 			</tr>
 			<tr>
 			<td></td>
