@@ -3,8 +3,8 @@
 	include_once"database.php";
 	if(isset($_POST["submit"])){
 		if(isset($_FILES['fileToUpload'])){
-			if ($_FILES["fileToUpload"]["size"] > 5000) {
-   				 echo "Sorry, your file is too large.";
+			if ($_FILES["fileToUpload"]["size"] > 2097152) {
+   				 echo "Sorry, your file is too large. ";
 			}
 			else{
 				$name=$_FILES["fileToUpload"]["name"];
