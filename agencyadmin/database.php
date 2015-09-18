@@ -331,11 +331,11 @@
 	}
 
 	///////////////////////////////////files
-	function add_files($name)
+	function add_files($name, $type, $uniqname)
 	{
 		$postId=$_SESSION["userData"]["agencyID"];
 		$date = date('Y-m-d');
-		conn()->exec("INSERT INTO downloads(postID, fileName, dateUploaded)VALUES('".$postId."','".$name."','".$date."')");
+		conn()->exec("INSERT INTO downloads(postID, fileName,uniqueFileName,fileType, dateUploaded)VALUES('".$postId."','".$name."','".$uniqname."','".$type."','".$date."')");
 	}
 
 	function get_files()

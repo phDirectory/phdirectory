@@ -2,9 +2,9 @@
 <?php
 	include_once"database.php";
 	if(isset($_POST["submit"])){
-		if(isset($_FILES['fileToUpload'])){
-			if ($_FILES["fileToUpload"]["size"] > 2097152) {
-   				 echo "Sorry, your file is too large. ";
+		if(!empty($_FILES['fileToUpload']["name"])){
+			if ($_FILES["fileToUpload"]["size"] > 500000) {
+   				 echo "Sorry, your file is too large. Make sure your file did not exceed to 8mb";
 			}
 			else{
 				$name=$_FILES["fileToUpload"]["name"];
@@ -13,9 +13,11 @@
 				$count=getDownloadsCount();
 				$finalname=getRandomString()."$count.$extension";
 				move_uploaded_file($tmp_name, "../files/".$finalname);
-				add_files($finalname);
+				add_files($name,$extension, $finalname);
 				echo $name. " has been uploaded";
 			}
+		}else{
+			echo "choose a file to upload first!";
 		}
 	}
 	function getRandomString(){
