@@ -311,6 +311,7 @@
 	}
 
 	
+
 	function countInquiry()
 	{
 		$id = $_SESSION['userData']['agencyID'];
@@ -321,18 +322,213 @@
 		$db = null;
 	}
 
+	function loginForMobile($username, $password){
 
 
+		$db = conn();
+		$sql = "SELECT * FROM mobile_user WHERE mobile_user.username='$username' and mobile_user.password='$password'";
+		$result = $db->query($sql)->fetch();
+		if($result != null){
+			$result["SPID"] = getCurrentSubplanID($result["id"]);
+		}
+		return $result;
+		$db = null;
+	}
+
+	function getCurrentSubplanID($userid){
+
+		$db = conn();
+		$sql = "SELECT SPID FROM subscriptions
+		  WHERE subscriberID = '$userid' and CURDATE() between startDate and endDate";
+		$result = $db->query($sql)->fetch();
+		return $result[0];
+		$db = null;
+	}
+
+	
+	function getSubsription($userid){
+
+		$db = conn();
+		$sql = "SELECT subscriptions.startDate, subscriptions.endDate,subscription_plan.SPName, subscription_plan.description
+		  FROM subscriptions JOIN subscription_plan 
+		  ON subscriptions.SPID = subscription_plan.SPID 
+		  WHERE subscriberID = $userid";
+		  $result = $db->query($sql)->fetchAll();
+		  return $result;
+		  $db = null;
+	}
+
+	function getSubplanForMobile(){
+		$db = conn();
+		$sql = "SELECT *
+		  FROM subscription_plan
+		  WHERE type = 'M'";
+		  $result = $db->query($sql)->fetchAll();
+		  return $result;
+		  $db = null;
+	}
+
+	function addSubscriptionForMobile($id, $userid)
+	{
+		$db = conn();
+		$date = getSubsription($userid);
+		if(empty($date))
+		{
+			$sdate = date('Y-m-d');
+		}
+		else
+		{
+			foreach ($date as $s) {
+				$sdate = $s['endDate'];
+			}
+		}
+		$wdate = new DateTime($sdate);
+		$wdate->add(new DateInterval('P30D'));
+		$edate = $wdate->format('Y-m-d');
+		$type = 'M';
+		$db->exec("INSERT INTO subscriptions(SPID, subscriberID, startDate, endDate, subtype)VALUES('".$id."','".$userid."','".$sdate."','".$edate."','".$type."')");
+		$db = null;
+	}
+
+	function getInquiryForMobile($userid){
+		$db = conn();
+		$sql = "SELECT agency.agencyName, inquiry.agencyID, inquiry.inquiryID, inquiry.title, inquiry.message, inquiry.date_inquire, inquiry.mobileID FROM inquiry
+		  JOIN agency ON inquiry.agencyID = agency.agencyID WHERE mobileID = '$userid' order by inquiryID desc";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+
+	}
 
 
+	function sendInquiryForMobile($userid, $agencyid, $title, $message){
+		$db = conn();
+		$currentDate = date('Y-m-d');
+		$db->exec("INSERT INTO inquiry(mobileID, agencyID, title, message, date_inquire)VALUES('".$userid."','".$agencyid."','".$title."','".$message."','".$currentDate."')");
+		$db = null;
 
+	}
 
+	function getServicesForMobile(){
 
+		$db = conn();
+		$sql = "SELECT services.serviceID, services.agencyID, services.serviceName, services.serviceType, services.details, agency.agencyName 
+		FROM services JOIN agency 
+		ON services.agencyID = agency.agencyID WHERE services.status = 'A'";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
 
+	}
 
+	function getDownloadables(){
+		$db = conn();
+		$sql = "SELECT * FROM downloads JOIN agency ON downloads.postID = agency.agencyID";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
 
+	function getFavorites($userid){
+		$db = conn();
+		$sql = "SELECT * FROM favorites
+		  JOIN agency ON favorites.agencyID = agency.agencyID WHERE userID = '$userid' order by id desc";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
 
+	}
 
+	function addToFavorites($userid, $agencyid){
+		$db = conn();
+		$db->exec("INSERT INTO favorites(agencyID, userID)VALUES('".$agencyid."','".$userid."')");
+		$db = null;
+
+	}
+
+	function getEvents(){
+		$db = conn();
+		$sql = "SELECT events.eventID, events.agencyID, events.title, events.datePosted, events.dateEdited, events.info, events.event_date, events.eventStatus, agency.agencyName FROM events JOIN agency ON events.agencyID = agency.agencyID";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+
+	function getEventsForDate($date){
+		$db = conn();
+		$sql = "SELECT events.eventID, events.agencyID, events.title, events.datePosted, events.dateEdited, events.info, events.event_date, events.eventStatus, agency.agencyName FROM events JOIN agency ON events.agencyID = agency.agencyID WHERE events.event_date = '$date'";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+
+	function deleteFavorite($userid, $agencyid){
+		$db = conn();
+		$db->exec("DELETE FROM favorites WHERE agencyID='$agencyid' and userID='$userid'");
+		$db = null;
+	}
+
+	function updateUserProfile($userid, $username, $oldpassword, $newpassword, $email, $fullname, $phoneNo){
+		
+		$sql="";
+		
+		if($oldpassword != "" && $newpassword != ""){
+			$sql= "UPDATE mobile_user SET 
+			username='$username',
+			password='$newpassword',
+			email='$email',
+			fullname='$fullname',
+			phoneNo='$phoneNo'
+			WHERE id='$userid' AND password='$oldpassword'";
+			$result = conn()->prepare($sql)->execute();
+
+			$profile = getUserProfile($userid);
+			if($newpassword != $profile["password"]){return false;}
+
+			return $result;
+		}else{
+			$sql= "UPDATE mobile_user SET 
+			username='$username',
+			email='$email',
+			fullname='$fullname',
+			phoneNo='$phoneNo'
+			WHERE id='$userid'";
+			$result = conn()->prepare($sql)->execute();
+			return $result;
+		}
+
+		
+	}
+
+	function getUserProfile($userid){
+
+		$db = conn();
+		$sql = "SELECT * FROM mobile_user WHERE id='$userid'";
+		$result = $db->query($sql)->fetch();
+		if($result != null){
+			$result["SPID"] = getCurrentSubplanID($result["id"]);
+		}
+		return $result;
+		$db = null;
+	}
+
+	function checkRated($userid, $agencyid){
+		$db = conn();
+		$sql = "SELECT * FROM rating WHERE agencyID='$agencyid' and MobileUserID='$userid'";
+		$result = $db->query($sql)->fetchAll();
+		
+		if(!empty($result)){return true;}
+		else {return false;}
+		
+		$db = null;
+	}
+
+	function rate($userid, $agencyid,$rate){
+		$db = conn();
+		$db->exec("INSERT INTO rating(agencyID, MobileUserID, rating)VALUES('".$agencyid."','".$userid."','".$rate."')");
+		$db = null;
+
+	}
 
 
 

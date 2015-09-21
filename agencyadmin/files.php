@@ -5,6 +5,7 @@
 		if(!empty($_FILES['fileToUpload']["name"])){
 			if ($_FILES["fileToUpload"]["size"] > 500000) {
    				 echo "Sorry, your file is too large. Make sure your file did not exceed to 8mb";
+
 			}
 			else{
 				$name=$_FILES["fileToUpload"]["name"];
