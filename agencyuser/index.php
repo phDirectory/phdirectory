@@ -6,7 +6,7 @@
 	if(isset($_GET["page"])){
 		$page = $_GET["page"];
 	}
-
+  $sp = check_sp();
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,7 +69,7 @@
           
           <p> 
           <?php 
-            if($page=="agency"||$page=="error"||$page=="agency-edit"||$page=="agency-account"||$page=="inq-reply"||$page=="news"||$page=="news-edit"||$page=="news-add"||$page=="event"||$page=="event-update"||$page=="event-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"){
+            if($page=="agency"||$page=="error"||$page=="availsp"||$page=="agency-edit"||$page=="agency-account"||$page=="inq-reply"||$page=="news"||$page=="news-edit"||$page=="news-add"||$page=="event"||$page=="event-update"||$page=="event-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"){
               include_once($page.".php");
             }
             else{

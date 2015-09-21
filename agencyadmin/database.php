@@ -61,8 +61,9 @@
 
 	function getModAccounts()
 	{
+		$id = $_SESSION['userData']['agencyID'];
 		$db = conn();
-		$sql = "SELECT * FROM agency_user WHERE agencyUserType = 'M' and status='A'";
+		$sql = "SELECT * FROM agency_user WHERE agencyUserType = 'M' and status='A' and agencyID = $id";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db = null;
@@ -158,14 +159,22 @@
 		return $result;
 		$db = null;
 	}
+	function getallagency()
+	{
+		$db = conn();
+		$sql = "select * from agency";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
 
 	function editagency($arr)
 	{
 		$id = $_SESSION["userData"]['agencyID'];
 		$db = conn();
-		$sql = "UPDATE agency SET agencyName=?, email=?, info=?, phoneNo=?, cityAddress= ?, houseNo=?, StreetAddress=?, barangayAddress=? WHERE agencyID = $id ";
+		$sql = "UPDATE agency SET agencyName=?, email=?, info=?, phoneNo=?, cityAddress= ?, houseNo=?, StreetAddress=?, barangayAddress=?, region=? WHERE agencyID = $id ";
 		$s = $db->prepare($sql);
-		$s->execute(array($arr['agencyname'], $arr['email'], $arr['info'], $arr['phone'],$arr['city'],$arr['house'],$arr['street'],$arr['barangay']));
+		$s->execute(array($arr['agencyname'], $arr['email'], $arr['info'], $arr['phone'],$arr['city'],$arr['house'],$arr['street'],$arr['barangay'],$arr['region']));
 		$db = null;
 	}
 
@@ -224,10 +233,23 @@
 	{
 		$date = date('Y-m-d');
 		$db = conn();
+		$status = 'On Going';
+		if ($arr['event-date'] < $date) {
+			$status = 'done';		
+		}
 		$id=$_SESSION['userData']['agencyID'];
-		$sql = "INSERT INTO events(title, datePosted, info, event_date, agencyID, status) VALUES(?,?,?,?,$id,'A')";
+		$sql = "INSERT INTO events(title, datePosted, info, event_date, eventStatus, agencyID, status) VALUES(?,?,?,?,?,$id,'A')";
 		$s = $db->prepare($sql);
-		$s->execute(array($arr['title'],$date,$arr['info'],$arr['event-date']));
+		$s->execute(array($arr['title'],$date,$arr['info'],$arr['event-date'],$status));
+	}
+	function update_eventDate($id)
+	{
+		$db = conn();
+		$status = "done";
+		$sql = "UPDATE events SET event_date=? WHERE eventID = $id";
+		$s = $db->prepare($sql);
+		$s->execute(array($status));
+		$db = null;
 	}
 
 	function find_event($id)
@@ -244,9 +266,9 @@
 		$id= $_GET['id'];
 		$date_edit = date("Y-m-d");
 		$db = conn();
-		$sql = "UPDATE events SET title = ?, info = ?, event_date=?, dateEdited=? WHERE eventID = $id";
+		$sql = "UPDATE events SET title = ?, info = ?, event_date=?, dateEdited=?, eventStatus=? WHERE eventID = $id";
 		$s = $db->prepare($sql);
-		$s->execute(array($arr['title'], $arr['info'], $arr['event-date'],$date_edit));
+		$s->execute(array($arr['title'], $arr['info'], $arr['event-date'],$date_edit,$arr['status']));
 		$db = null;
 	}
 	function event_delete($id) 
@@ -347,3 +369,48 @@
 		return $result;
 		$db=null;
 	}
+	function hierarchy($sub)
+	{
+		$db=conn();
+		$id = $_SESSION['userData']['agencyID'];
+		$db->exec("INSERT INTO govhierarchy(AgencyID,subAgencyID)VALUES('".$id."','".$sub."')");
+	}
+	function getHierarchy()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT subAgencyID FROM govhierarchy WHERE AgencyID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
+	}
+
+	function join_hierarchy()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT agency.agencyName, govhierarchy.GovHierID FROM agency 
+		INNER JOIN govhierarchy ON govhierarchy.subAgencyID = agency.agencyID";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+
+	function remove_hierarchy($id)
+	{
+		$db = connection();
+		$sql = "DELETE FROM govhierarchy WHERE GovHierID = $id";
+		$db->prepare($sql)->execute();
+	}
+
+////////////////////////////////
+	function countRate()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT ( sum(rating)/count(rating)) as rate FROM rating WHERE agencyID = $id";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db = null;
+	}
+

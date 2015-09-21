@@ -1,6 +1,12 @@
 <?php
 	include_once('database.php');
 	$event = get_event();
+	$date = date('Y-m-d');
+	foreach ($event as $e) {
+		if($e['event_date'] < $date){
+			update_eventDate($e['eventID']);
+		}
+	}
 ?>
 <html>
 	<head><title>PH directory - News Management</title></head>
@@ -35,7 +41,7 @@
 							<td><?php echo $e['datePosted'];?></td>
 							<td><?php echo $e['dateEdited'];?></td>
 							<td><a href="index.php?page=event-update&id=<?php echo $e['eventID']; ?>">Edit</a></td>
-							<td><a href="event-delete.php?id=<?php echo $e['eventID'] ?>" onclick="return confirm('Are you sure you want to delete this event?');">delete</a></td>
+							<td><a href="hier-delete.php?id=<?php echo $e['eventID'] ?>" onclick="return confirm('Are you sure you want to delete this event?');">delete</a></td>
 						</tr>
 			<?php 
 					}

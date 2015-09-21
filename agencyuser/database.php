@@ -313,3 +313,13 @@
 		$db->exec("INSERT INTO subscriptions(SPID, subscriberID, startDate, endDate, subAmt, subtype)VALUES('".$id."','".$agencyid."','".$sdate."','".$edate."','".$amt."','".$type."')");
 		$db = null;
 	}
+	////////////////////////////
+		function countRate()
+		{
+			$id = $_SESSION['userData']['agencyID'];
+			$db = conn();
+			$sql = "SELECT ( sum(rating)/count(rating)) as rate FROM rating WHERE agencyID = $id";
+			$result = $db->query($sql)->fetch();
+			return $result;
+			$db = null;
+		}

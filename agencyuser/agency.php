@@ -6,10 +6,12 @@
 	}
 		$id = $_SESSION['userData']['agencyID'];
 		$agency = getagency($id);
+		$rate = countRate();
 ?>
 <html>
 	<body>
-		<span>Agency details</span><button class="btn btn-primary pull-right"><a href="index.php?page=agency-edit">Edit</a></button>
+		<span>Agency details</span>
+		<span class="stars"><span style="width: 80px;"></span></span>
 		<table class="table">
 			<tr>
 				<td>Agency Name:</td>
@@ -30,11 +32,24 @@
 			<tr>
 				<td>Address:</td>
 				<td><?php echo $agency['houseNo']." ";
-						  echo $agency['StreetAddress'].", ";
+						  echo $agency['StreetAddress']." ";
 						  echo $agency['barangayAddress'].", ";
 						  echo $agency['cityAddress'];?>
 				</td>	
 			</tr>
 		</table>
+		<button class="btn btn-primary"><a href="index.php?page=agency-edit">Edit</a></button>
+		<script type="text/javascript">
+        $(function() {
+                $('span.stars').stars();
+        });
+
+        $.fn.stars = function() {
+            var total = <?php echo $rate['rate'];?>;
+            return $(this).each(function() {
+                $(this).html($('<span />').width(Math.max(0, (Math.min(5, total))) * 16));
+            });
+        }
+    	</script>
 	</body>
 </html>

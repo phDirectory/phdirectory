@@ -33,6 +33,7 @@
 		<input type="text" name="contactNo" id="contactNo" placeholder="Contact Number" class="form-control" value = "<?php echo $n['contactNo']?>" required>
 		
 		<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Edit">
+		<button class="btn btn-default"><a href="index.php?page=moderators" style="color:#000;">back</a></button>
 		
 		</div>
 

@@ -13,16 +13,15 @@
 <body>
 	
 	<div class="box-event">
-	<h2 id="event">Event</h2>
-	<hr/>
 	<?php foreach ($event as $e)
 	{?>
-		<div>
-		<?php echo "<span style='font-weight:bold;'>Title: </span>".$e['title']; ?>
-		<span class="pull-right"><?php echo "<span style='font-weight:bold;'>Date: </span>".$e['event_date']; ?></span>
-		</div>
-		<div style="font-weight:bold;">Info:</div>
+		<?php echo "<h2>".$e['title']."</h2>"; ?>
+		<hr/>
+		<div class="pull-right"><?php echo $e['eventStatus']; ?></div>
+		<div style="font-weight:bold;" class="pull-right">Status:&nbsp;</div>
+		<?php echo "<p> Date: ".$e['event_date']."</p>"; ?>
 		<div><?php echo $e['info'];?></div>
+
 	<?php
 	} ?>
 	</div>

@@ -17,7 +17,7 @@
 		<input type="text" name="username" id="username" placeholder="Username" class="form-control" required>
 
 		<label id="form-label">Password</label>
-		<input type="text" name="password" id="password" placeholder="Password" class="form-control" required>
+		<input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
 		
 		<label id="form-label">Full name</label>
 		<input type="text" name="fullname" id="fullname" placeholder="Full name" class="form-control" required>

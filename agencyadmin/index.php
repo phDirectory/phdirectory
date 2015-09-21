@@ -7,10 +7,13 @@
 		$page = $_GET["page"];
 	}
   $sp = check_sp();
-?>
+  $count = 0;
+  $inq = countInquiry();
+  $count = $inq['total'];
+  ?>
 <!DOCTYPE html>
 <html>
-	<head>
+	<head><title>PHdirectory</title>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
   		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +27,8 @@
     <script src="../assets/bootstrap.min.js"></script>
     <script src="../assets/ie10-viewport-bug-workaround.js"></script>
     <script src="../assets/offcanvas.js"></script>
+    <script src="../assets/js/notify.js"></script>
+    <script src="../assets/js/notify.min.js"></script>
 <?php
   if(empty($sp))
   {
@@ -34,6 +39,17 @@
     });
     </script>";
   }
+
+  if($count > 0)
+  {
+    echo "
+    <script type='text/javascript'>
+    $(document).ready(function() {
+      notify();
+    });
+    </script>";
+  }
+
 ?>
 	</head>
 	<body>
@@ -70,7 +86,7 @@
           <div class="jumbotron">
           
           <p>	<?php 
-					 if($page=="moderator-edit"||$page=="files"||$page=="error"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="inq-reply"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"||$page=="availsp"){
+					 if($page=="moderator-edit"||$page=="cascade"||$page=="files"||$page=="error"||$page=="moderators-add"||$page=="moderators"||$page=="event"||$page=="event-update"||$page=="event-delete"||$page=="event-add"||$page=="agency"||$page=="agency-account"||$page=="agency-edit"||$page=="news"||$page=="service-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="inq-reply"||$page=="subscription"||$page=="user"||$page=="news-add"||$page=="news-edit"||$page=="availsp"){
 						include_once($page.".php");
 					 }
 					 else{
@@ -88,17 +104,21 @@
 			      <a href="index.php?page=news" class="list-group-item disable">News</a>
 			      <a href="index.php?page=services" class="list-group-item disable">Services</a>
             <a href="index.php?page=event" class="list-group-item disable">Event</a>
-			      <a href="index.php?page=notification" class="list-group-item disable">Notification</a>
-			      <a href="index.php?page=inquiry" class="list-group-item disable">Inquiry</a></li>
+			      <a href="index.php?page=inquiry" class="list-group-item disable pos-demo noti">Inquiry</a></li>
             <a href="index.php?page=files" class="list-group-item disable">Files</a>
+            <a href="index.php?page=cascade" class="list-group-item disable">Hierarchy</a>
 			      <a href="index.php?page=subscription" class="list-group-item">Subscription</a>
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
 
-      <hr>
-
     </div><!--/.container-->
+    <script type="text/javascript">
+    function notify(){
+      $('.noti').notify(
+        "You have <?php echo $count; ?> Inquiry",{position:"left"});  
+    }
+    </script>
 	</body>
 
 </html>

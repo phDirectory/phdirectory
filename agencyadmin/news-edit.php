@@ -47,6 +47,7 @@
 			<input type="text" name="link" id="link" placeholder="website link" class="form-control" value="<?php echo $n['link']?>">
 
 			<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#news-edit-modal" value="Edit">
+			<button class="btn btn-default"><a href="index.php?page=news" style="color:#000;">back</a></button>
 		</div>
 
 

@@ -221,3 +221,13 @@ h1.error, h4.error
 	color: #7A7A7A !important;
 	text-align: center !important;
 }
+
+span.stars, span.stars span {
+    display: block;
+    background: url(../images/stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+span.stars span {
+    background-position: 0 0;
+}

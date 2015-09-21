@@ -14,8 +14,6 @@
 					<td>News Type</td>
 					<td>Title</td>
 					<td>Information</td>
-					<td>Date Posted</td>
-					<td>Date Edited</td>
 					<td>Website</td>
 				<tr>
 			</thead>
@@ -29,8 +27,6 @@
 					<td><?php echo $a['newsType'];?></td>
 					<td><?php echo $a['title'];?></td>
 					<td><?php echo $a['info'];?></td>
-					<td><?php echo $a['datePosted'];?></td>
-					<td><?php echo $a['dateEdited'];?></td>
 					<td><?php echo $a['link'];?></td>
 					<td><a href="index.php?page=news-edit&id=<?php echo $a['newsID'];?>">Edit</a></td>
 					<td><a href="news-delete.php?id=<?php echo $a['newsID'] ?>" onclick="return confirm('Are you sure you want to delete this news?');">Delete</a></td>

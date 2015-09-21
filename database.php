@@ -158,7 +158,7 @@
 		$spname=$arr['spname'];
 		$desc=$arr['desc'];
 		$amount=$arr['amount'];
-		conn()->exec("INSERT INTO subscription_plan(SPName, description, amount) VALUES ('". $spname ."', '". $desc ."','". $amount ."')");
+		conn()->exec("INSERT INTO subscription_plan(SPName, description, amount, type) VALUES ('". $spname ."', '". $desc ."','". $amount ."','A')");
 	}
 
 	function deletesp($id)
@@ -242,7 +242,8 @@
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db = null;
-	}	////////////////////////////////
+	}
+		////////////////////////////////
 
 	function getAllNewsForMobile()
 	{
@@ -272,7 +273,53 @@
 		  return $result;
 		  $db = null;
 	}
+	////////////////////////////////////////////////
+	function get_news()
+	{
+		$db = conn();
+		$sql = "SELECT * FROM news WHERE status = 'A'";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+
+	function find_news($id)
+	{
+		$db=conn();
+		$sql = "SELECT * FROM news WHERE newsID = $id AND status = 'A' ";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+////////////////////////////////////////////////
+	function get_serv()
+	{
+		$db = conn();
+		$sql = "SELECT * FROM services WHERE status = 'A'";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+
+	function find_serv($id)
+	{
+		$db=conn();
+		$sql = "SELECT * FROM services WHERE serviceID = $id AND status = 'A' ";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db = null;
+	}
+
 	
+	function countInquiry()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT count(inquiryID) as total FROM inquiry WHERE agencyID = $id";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db = null;
+	}
 
 
 
