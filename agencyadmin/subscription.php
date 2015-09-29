@@ -7,9 +7,20 @@ $sp = get_sp();
 <html>
 <head>
 	<title></title>
+<?php
+  if(empty($plan))
+  {
+    echo "
+    <script>
+      $(document).ready(function(){
+         $('#myModal').modal('show');
+      });
+    </script>";
+  }
+?>
 </head>
 <body>
-	<input type="button" value="New Plan" class="btn btn-primary" data-toggle="modal" data-target="#myModal">	
+	<input type="button" value="New Plan" class="btn btn-primary" id="plan" data-toggle="modal" data-target="#myModal">	
 	<h2>Your Plan</h2>
 	<hr/	>
 	<?php

@@ -46,7 +46,7 @@
 	$(document).ready(function() {
 
 		$('#calendar').fullCalendar({
-			defaultDate: '2015-09-20',
+			defaultDate: '2015-09-24',
 			editable: false,
 			eventLimit: true,
        // allow "more" link when too many events
@@ -100,7 +100,7 @@
             <li><a href="index.php?page=contact">Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.php?page=subscribe">Subscribe</a></li>
+            <li><a href="index.php?page=subscribe">Sign Up</a></li>
             <li><a href="index.php?page=login">Login</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -148,7 +148,7 @@
       <?php }else if($page == "subscribe"){ ?>
                
             <div class="box">
-                     <h2 class="text-center">Subscribe</h2>
+                     <h2 class="text-center">Sign Up</h2>
                      <hr/>
                <div class="contain">
                <?php
@@ -230,8 +230,12 @@
                   echo'<label style="color:red;display:block;">'.$array["message-email"].'</label>';
                  ?>
                   <input type="text" name="agencyphone" placeholder=" Phone Number" class="form-control" value="<?php if(isset($_POST['agencyphone'])) echo $_POST['agencyphone']; ?>" required>
-      
-      
+                  <input type="text" name="lat" id="lat" placeholder="Latitude" class="form-control">
+                  <input type="text" name="long" id="long" placeholder="Longitude" class="form-control">
+                  <label id="ss"></label>
+    
+                  <input type="button" onclick="getLocation();" value="Get location" class="btn btn-default btn-block">
+                  <p id="demo"></p>
                   <button type="submit" name="subscribe" class="btn btn-lg btn-primary btn-block">Subscribe</button>
                </form>
                  </div>
@@ -241,18 +245,42 @@
 </div><!--/.container-->
 
 <!--scripts-->
+<script> 
+  var lat = $("#lat").val();
+  var lon = $("#long").val();
+  if(lat == "" && lon == "")
+  {
+    $('#ss').text('Location not set.');
+  }
+  else{
+    $('#ss').text("Location have been set.");
+  }
+</script>
+
 <script>
   var x = document.getElementById("demo");
-  function getLocation() {
-      if (navigator.geolocation) {
+  function getLocation() 
+  {
+      if (navigator.geolocation) 
+      {
           navigator.geolocation.getCurrentPosition(showPosition);
+      var lat = $("#lat").val();
+      var lon = $("#long").val();
+      if(lat != "" && lon != "")
+      {
+        $('#ss').text("Location have been set.");
+      }
       } else { 
           x.innerHTML = "Geolocation is not supported by this browser.";
       }
+     
   }
-  function showPosition(position) {
+
+  function showPosition(position) 
+  {
     $("#lat").val(position.coords.latitude);
     $("#long").val(position.coords.longitude);
+     
   }
 </script>
     <script src="assets/ie-emulation-modes-warning.js"></script>

@@ -19,7 +19,7 @@
 			<label id="form-label">Title</label>
 			<input type="text" name="title" id="title" placeholder="Title" class="form-control" required>
 			<label id="form-label">Information</label>
-			<input type="text" name="info" id="info" placeholder="Information" class="form-control" required>
+			<textarea rows="4" name="info" id="info" placeholder="Enter Information here..." class="form-control" required></textarea>
 			<label id="form-label">Event Date</label>
 			<input type="date" name="event-date" id="event-date" class="form-control" required>
 			<input type="submit" class="btn btn-primary" name="add_event" value="Add Event">

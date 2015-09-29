@@ -1,6 +1,16 @@
 <?php
 	include_once('database.php');
 	$inquiry = get_inquiry();
+	if(isset($_COOKIE))
+		{
+			$subcount = $_COOKIE['count'];
+			setcookie('subcount', $subcount);
+			echo "<script type='text/javascript'>
+    		$(document).ready(function() {
+      		$('.badge').css('display', 'none');
+    		});
+    		</script>";
+		}
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +20,12 @@
 </head>
 <body>
 	<h2>Inquiry</h2>
-	<?php 
+	<hr/>
+	<?php
+		if(empty($inquiry))
+		{
+			echo "<h4 class='error'>No Inquiries Available.</h4>";
+		}  
 		foreach ($inquiry as $i) 
 		{ 
 	?>

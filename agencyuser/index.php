@@ -1,12 +1,22 @@
 <?php
 	$arr = array();
 	include_once("../database.php");
-	 
+	 setcookie('user',$_SESSION['userData']['agencyUserID']);
 	$page = "agency";
 	if(isset($_GET["page"])){
 		$page = $_GET["page"];
 	}
   $sp = check_sp();
+   $count = 0;
+  $inq = countInquiry();
+  if(!empty($inq)){
+    $count = $inq['total'];
+    setcookie('count', $inq['total']);
+  }
+  if(!isset($_COOKIE['subcount']))
+  {
+    setcookie('subcount');
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,7 +79,7 @@
           
           <p> 
           <?php 
-            if($page=="agency"||$page=="error"||$page=="availsp"||$page=="agency-edit"||$page=="agency-account"||$page=="inq-reply"||$page=="news"||$page=="news-edit"||$page=="news-add"||$page=="event"||$page=="event-update"||$page=="event-add"||$page=="services"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"){
+            if($page=="agency"||$page=="error"||$page=="availsp"||$page=="files"||$page=="agency-edit"||$page=="agency-account"||$page=="inq-reply"||$page=="news"||$page=="news-edit"||$page=="news-add"||$page=="event"||$page=="event-update"||$page=="event-add"||$page=="services"||$page=="service-add"||$page=="service-edit"||$page=="notification"||$page=="inquiry"||$page=="subscription"){
               include_once($page.".php");
             }
             else{
@@ -85,11 +95,12 @@
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
             <a href="index.php?page=agency" class="list-group-item">Agency</a>
-            <a href="index.php?page=news" class="list-group-item disable">News</a>
+            <a href="index.php?page=news" class="list-group-item disable">Bulletin</a>
             <a href="index.php?page=event" class="list-group-item disable">Event</a>
             <a href="index.php?page=services" class="list-group-item disable">Services</a>
-            <a href="index.php?page=notification" class="list-group-item disable">Notification</a>
-            <a href="index.php?page=inquiry" class="list-group-item disable">Inquiry</a></li>
+            <a href="index.php?page=inquiry" class="list-group-item disable pos-demo noti">Inquiry <span class="badge" <?php if(isset($_COOKIE)){ if($_COOKIE['count'] <= $_COOKIE['subcount']) echo "style='display:none;'";?>>
+              <?php if($_COOKIE['count']>=$_COOKIE['subcount'] && $_COOKIE['user']==$_SESSION['userData']['agencyUserID']) echo $_COOKIE['count'] - $_COOKIE['subcount'];} ?></span></a></li>
+            <a href="index.php?page=files" class="list-group-item disable">Files</a></li>
             <a href="index.php?page=subscription" class="list-group-item">Subscription</a>
           </div>
         </div><!--/.sidebar-offcanvas-->

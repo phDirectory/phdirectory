@@ -18,7 +18,7 @@
 		{
 			hierarchy($_POST['agency']);
 			echo "Agency has has been added to your hierarchy";
-			header("Refresh: 2; index.php?page=cascade");
+			header("Refresh: 1; index.php?page=cascade");
 		}
 	}
 ?>
@@ -28,7 +28,7 @@
 </head>
 <body>
 	<form method="post" class="form-inline">
-		<label id="form-label">Add sub-agency</label>
+		<label id="form-label">Add parent-agency</label>
 		<select name="agency" class="form-control" required>
 				<?php
 					foreach ($agency as $value)
@@ -43,7 +43,7 @@
 		<input type="submit" class="btn btn-primary" name="submit"> 
 	</form>
 		<hr/>
-	<h3>Sub-Agency</h3>
+	<h3>Parent Agency</h3>
 	<table class="table">
 	<?php
 		foreach ($join as $j) {?>

@@ -1,5 +1,4 @@
-<?
-
+<?php
 include_once("../database.php");
 
 $json = file_get_contents('php://input');

@@ -169,7 +169,7 @@ span.second
 {
 	margin-left: 20%;
 }
-#inquiry-title
+#name
 {
 	font-weight: bold;
 }
@@ -177,12 +177,9 @@ span.second
 {
 	margin:10px;
 }
-#inquiry-content
+#trail
 {
-	border: solid 1px #c3c3c3;
-    border-right: none;
-    border-left: none;
-    border-top: none;
+	margin-left: 50px;
 }
 #err-msg
 {
@@ -230,4 +227,11 @@ span.stars, span.stars span {
 }
 span.stars span {
     background-position: 0 0;
+}
+span.badge{
+	background-color: #b94a48 !important;
+}
+input#lat, input#long
+{
+	display: none;
 }

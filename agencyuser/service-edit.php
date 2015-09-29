@@ -25,6 +25,7 @@
 			<textarea rows="4" name="details" placeholder="Enter details here..." class="form-control" required><?php echo $n['details']?></textarea>
 
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#service-edit">Edit</button>
+			<button class="btn btn-default"><a href="index.php?page=services" style="color:#000;">back</a></button>
 		</div>
 
 

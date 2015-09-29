@@ -42,14 +42,14 @@
 				<td><?php echo $agency['region']; ?></td>
 			</tr>
 		</table>
-		<button class="btn btn-primary"><a href="index.php?page=agency-edit">Edit</a></button>
+		<a href="index.php?page=agency-edit"><button class="btn btn-primary">Edit</button></a>
 		<script type="text/javascript">
         $(function() {
                 $('span.stars').stars();
         });
 
         $.fn.stars = function() {
-            var total = <?php echo $rate['rate'];?>;
+            var total = <?php if(!empty($rate['rate'])){ echo $rate['rate']; } else echo 0; ?>;
             return $(this).each(function() {
                 $(this).html($('<span />').width(Math.max(0, (Math.min(5, total))) * 16));
             });

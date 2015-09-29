@@ -19,11 +19,23 @@
 
 			<label id="form-label">Information</label>
 			<textarea rows="4" name="info" placeholder="Enter Information here..." class="form-control" required><?php echo $n['info']?></textarea>
-
+			<label id="form-label">Status</label>
+			<select name="status" class="form-control">
+				<?php
+					$array=array("On Going","Cancel");
+					foreach ($array as $value) {
+						if($n["eventStatus"]==$value)
+							echo'<option value="'.$value.'" selected>'.$value.'</option>';
+						else
+							echo'<option value="'.$value.'">'.$value.'</option>';
+					}
+				?>
+			</select>
 			<label id="form-label">Event Date</label>
-			<input type="date" name="event-date" class="form-control" value="<?php echo $n['event_date']?>">
+			<input type="date" name="event-date" class="form-control" value="<?php echo $n['event_date'];?>">
 
 			<input type="button" class="btn btn-primary" value="Submit" data-toggle="modal" data-target="#event-update">
+			<button class="btn btn-default"><a href="index.php?page=event" style="color:#000;">back</a></button>
 		</div>
 
 		<!-- Modal -->

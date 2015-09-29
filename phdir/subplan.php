@@ -30,7 +30,7 @@ include_once"../database.php";
 					<td><?php echo $a['description'];?></td>
 					<td><?php echo $a['amount'];?></td>
 					<td><a href="index.php?page=subplan-edit&id=<?php echo $a['SPID'] ?>">Edit</a></td>
-					<td><a href="subplan-delete.php?id=<?php echo $a['SPID'] ?>">Delete</a></td>
+					<td><a href="subplan-delete.php?id=<?php echo $a['SPID'];?>" onclick="return confirm('Are you sure you want to delete this subscription plan?')">Delete</a></td>
 				</tr>
 			<?php 
 				} 

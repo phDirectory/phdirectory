@@ -18,9 +18,9 @@
 	{
 	?>
 		<div>
-		<div><?php echo "<h2>".$n['newsType']."</h2>"; ?></div>
+		<?php echo "<h2>".$n['title']."</h2>"; ?>
+		<div><?php echo "<h4> (".$n['newsType'].")</h4>"; ?></div>
 		<hr/>
-		<?php echo "<h3>".$n['title']."</h3>"; ?>
 		</div>
 		<p><?php echo $n['info'];?></p>
 		<span><?php if(!empty($n['link'])) echo 'read full article here: '; ?></span>

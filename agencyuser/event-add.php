@@ -23,6 +23,7 @@
 			<label id="form-label">Event Date</label>
 			<input type="date" name="event-date" id="event-date" class="form-control" required>
 			<input type="submit" class="btn btn-primary" name="add_event" value="Add Event">
+			<button class="btn btn-default"><a href="index.php?page=event" style="color:#000;">back</a></button>
 		</div>	
 	</form>
 </body>

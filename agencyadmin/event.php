@@ -41,7 +41,7 @@
 							<td><?php echo $e['datePosted'];?></td>
 							<td><?php echo $e['dateEdited'];?></td>
 							<td><a href="index.php?page=event-update&id=<?php echo $e['eventID']; ?>">Edit</a></td>
-							<td><a href="hier-delete.php?id=<?php echo $e['eventID'] ?>" onclick="return confirm('Are you sure you want to delete this event?');">delete</a></td>
+							<td><a href="event-delete.php?id=<?php echo $e['eventID'] ?>" onclick="return confirm('Are you sure you want to delete this event?');">delete</a></td>
 						</tr>
 			<?php 
 					}

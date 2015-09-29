@@ -59,7 +59,7 @@
 			<td></td>
 			<td>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit</button>
-				<button class="btn btn-default"><a href="index.php?page=agency" style="color:#000;">back</a></button>
+				<a href="index.php?page=agency" class="btn btn-default" style="color:#000;">back</a>
 			</td>
 			</tr>
 		</table>

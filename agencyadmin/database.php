@@ -1,8 +1,6 @@
 <?php
 	//include_once"../helper.php";
 	//connectTo("phdirectory_db");
-	
-
 	function connection()
 	{
 		return new PDO("mysql:host=localhost;dbname=phdirectory_db","root","");
@@ -114,6 +112,21 @@
 		return $result;
 		$db = null;
 	}
+
+	function add_serviceType($arr)
+	{
+		$db = conn();
+		$db->exec(" INSERT INTO service_types(serviceTypeName)VALUES('".$arr['servicetype']."')");
+	}
+	function getallservicesType()
+	{
+		$db = conn();
+		$sql = "SELECT * FROM service_types";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+
 
 	function find_service($id)
 	{
@@ -285,17 +298,52 @@
 	{
 		$id = $_SESSION['userData']['agencyID'];
 		$db = conn();
-		$sql = "SELECT * FROM inquiry WHERE agencyID = $id";
+		$sql = "SELECT * FROM inquiry
+		 INNER JOIN mobile_user ON inquiry.mobileID = mobile_user.id
+		 WHERE agencyID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
+	}
+	function find_inqui($id)
+	{
+		$db = conn();
+		$sql = "SELECT inquiry.title, mobile_user.fullname FROM inquiry
+		INNER JOIN mobile_user ON inquiry.mobileID = mobile_user.id
+		 WHERE inquiryID = $id";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db=null;
+	}
+
+	function add_trail($id, $message)
+	{
+		$from = "A";
+		conn()->exec("INSERT INTO inquirytrail(inquiryID, trailFrom, message)VALUES('".$id."','".$from."','".$message."')");
+	}
+
+	function get_trail($id)
+	{
+		$db = conn();
+		$sql = "SELECT inquirytrail.message,inquirytrail.trailFrom, inquiry.title, mobile_user.fullname, agency.agencyName 
+		FROM inquirytrail
+		INNER JOIN inquiry ON inquiry.inquiryID = inquirytrail.inquiryID
+		INNER JOIN mobile_user ON mobile_user.id = inquiry.mobileID
+		INNER JOIN agency ON agency.agencyID = inquiry.agencyID 
+		WHERE inquirytrail.inquiryID = $id";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db=null;
 	}
 
-	function add_inquiry($mID, $title, $message)
+	function get_suggestion()
 	{
 		$id = $_SESSION['userData']['agencyID'];
-		$date = date('Y-m-d');
-		conn()->exec("INSERT INTO inquiry(agencyID, title, date_inquire, message, mobileID)VALUES('".$id."','".$title."','".$date."','".$message."','".$mID."')");
+		$db = conn();
+		$sql = "SELECT * FROM suggestions WHERE agencyID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
 	}
 	/////////////////////////////////////////
 	function find_subplan()
@@ -403,6 +451,17 @@
 		$db->prepare($sql)->execute();
 	}
 
+	function moderatorlog()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT * FROM agency_user 
+				INNER JOIN news ON agency_user.agencyID = news.agencyID and agency_user.agencyUserID = news.userID
+				WHERE agencyUserType = 'M' AND agency_user.agencyID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
 ////////////////////////////////
 	function countRate()
 	{

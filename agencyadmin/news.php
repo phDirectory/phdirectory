@@ -5,7 +5,7 @@
 <html>
 	<head><title>PH directory - News Management</title></head>
 	<body>
-		<button class="btn btn-primary"><a href="index.php?page=news-add">Add News</a></button>
+		<a href="index.php?page=news-add"><button class="btn btn-primary">Add Entry</button></a>
 
 		<table class="table">
 			<thead>

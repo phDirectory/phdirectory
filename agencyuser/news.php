@@ -10,12 +10,9 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<td>News No.</td>
 					<td>News Type</td>
 					<td>Title</td>
 					<td>Information</td>
-					<td>Date Posted</td>
-					<td>Date Edited</td>
 					<td>Website</td>
 				<tr>
 			</thead>
@@ -25,12 +22,9 @@
 				{
 			?>
 				<tr>
-					<td><?php echo $a['newsID'];?></td>
 					<td><?php echo $a['newsType'];?></td>
 					<td><?php echo $a['title'];?></td>
 					<td><?php echo $a['info'];?></td>
-					<td><?php echo $a['datePosted'];?></td>
-					<td><?php echo $a['dateEdited'];?></td>
 					<td><?php echo $a['link'];?></td>
 					<td><a href="index.php?page=news-edit&id=<?php echo $a['newsID'];?>">Edit</a></td>
 				</tr>

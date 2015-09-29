@@ -7,6 +7,7 @@
 		service_edit($_POST);
 		header('Location:index.php?page=services');
 	}
+	$type = getallservicesType();
 ?>
 
 <html>
@@ -19,8 +20,13 @@
 			<input type="text" name="servicename" placeholder="Title" class="form-control" value="<?php echo $n['serviceName']?>" required>
 
 			<label id="form-label">Service Type</label>
-			<input type="text" name="servicetype" placeholder="website link" class="form-control" value="<?php echo $n['serviceType']?>">
-
+						<select name="servicetype" id="servicetype" class="form-control" required>
+			<?php 
+				foreach ($type as $t) {	
+			?> 
+				<option><?php echo $t['serviceTypeName']; ?></option>
+			<?php } ?>
+			</select>
 			<label id="form-label">Details</label>
 			<textarea rows="4" name="details" placeholder="Enter details here..." class="form-control" required><?php echo $n['details']?></textarea>
 

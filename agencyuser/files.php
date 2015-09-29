@@ -22,6 +22,7 @@
 			echo "choose a file to upload first!";
 		}
 	}
+
 	function getRandomString(){
 		$array=array("56lZJ","Cbk25","0RoDg","Yr0If","c0ZLv","s7jq9");
 		return $array[rand(0,5)];

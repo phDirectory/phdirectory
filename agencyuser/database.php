@@ -16,7 +16,7 @@
 		$title = $_POST['title'];
 		$info = $_POST['info'];
 		$link = $_POST['link'];
-		conn()->exec("INSERT INTO news(newsType, title, datePosted, info, link,agencyID)VALUES('". $type ."','". $title ."','". $date ."','". $info ."','". $link ."','".$userData["agencyID"]."')");
+		conn()->exec("INSERT INTO news(newsType, title, datePosted, info, link,agencyID, userID)VALUES('". $type ."','". $title ."','". $date ."','". $info ."','". $link ."','".$userData["agencyID"]."','".$userData["agencyUserID"]."')");
 	}
 
 	function getallnews()
@@ -116,9 +116,12 @@
 
 	function addservice($arr)
 	{
-		$userData = $_SESSION["userData"];
-		connection()->exec("INSERT INTO services(serviceName, serviceType, details,agencyID)VALUES('".$arr['servicename']."','".$arr['servicetype']."','".$arr['details']."','".$userdata['agencyID']."',)");
-		
+		$db = conn();
+		$status = "A";
+		$id=$_SESSION['userData']['agencyID'];
+		$sql = "INSERT INTO services(serviceName, serviceType, details,agencyID,status, userID)VALUES(?,?,?,?,?,?)";
+		$s = $db->prepare($sql);
+		$s->execute(array($arr['servicename'],$arr['servicetype'],$arr['details'],$id,$status,$_SESSION['userData']['agencyUserID']));
 	}
 
 	/////////////////////////////////////////////agency profile
@@ -207,9 +210,9 @@
 		$date = date('Y-m-d');
 		$db = conn();
 		$id=$_SESSION['userData']['agencyID'];
-		$sql = "INSERT INTO events(title, datePosted, info, event_date, agencyID, status) VALUES(?,?,?,?,$id,'A')";
+		$sql = "INSERT INTO events(title, datePosted, info, event_date, agencyID, status, userID) VALUES(?,?,?,?,$id,'A',?)";
 		$s = $db->prepare($sql);
-		$s->execute(array($arr['title'],$date,$arr['info'],$arr['event-date']));
+		$s->execute(array($arr['title'],$date,$arr['info'],$arr['event-date'],$_SESSION['userData']['agencyUserID']));
 	}
 
 	function find_event($id)
@@ -224,12 +227,12 @@
 
 	function event_edit($arr)
 	{
-		$id=$_SESSION['userData']['agencyID'];
+		$id= $_GET['id'];
 		$date_edit = date("Y-m-d");
 		$db = conn();
-		$sql = "UPDATE events SET title = ?, info = ?, event_date=?, dateEdited=? WHERE agencyID = $id";
+		$sql = "UPDATE events SET title = ?, info = ?, event_date=?, dateEdited=?, eventStatus=? WHERE eventID = $id";
 		$s = $db->prepare($sql);
-		$s->execute(array($arr['title'], $arr['info'], $arr['event-date'],$date_edit));
+		$s->execute(array($arr['title'], $arr['info'], $arr['event-date'],$date_edit,$arr['status']));
 		$db = null;
 	}
 	function get_event()
@@ -312,6 +315,24 @@
 		$type = 'A';
 		$db->exec("INSERT INTO subscriptions(SPID, subscriberID, startDate, endDate, subAmt, subtype)VALUES('".$id."','".$agencyid."','".$sdate."','".$edate."','".$amt."','".$type."')");
 		$db = null;
+	}
+	///////////////////////////////////files
+	function add_files($name, $type, $uniqname)
+	{
+		$postId=$_SESSION["userData"]["agencyID"];
+		$user=$_SESSION['userData']['agencyUserID'];
+		$date = date('Y-m-d');
+		conn()->exec("INSERT INTO downloads(postID, fileName,uniqueFileName,fileType, dateUploaded, userID)VALUES('".$postId."','".$name."','".$uniqname."','".$type."','".$date."','".$user."')");
+	}
+
+	function get_files()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT * FROM downloads WHERE postID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
 	}
 	////////////////////////////
 		function countRate()

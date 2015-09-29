@@ -3,7 +3,9 @@
 	$account = getaccount();
 	if(isset($_POST['fname']))
 	{
-		fname_edit($_POST);
+		if(!empty($_POST['fname'])){
+			fname_edit($_POST);
+		}
 		header('Location:index.php?page=agency-account');
 	}
 
@@ -19,9 +21,11 @@
 			if($_POST['pass1']==$_POST['pass2'])
 			{
 				pass_edit($_POST);
-				//header('Location:index.php?page=agency-account');
+				header('Location:index.php?page=agency-account');
 			}
-		}	
+		}
+		else
+			echo "Input did not match";	
 	}
 ?>
 

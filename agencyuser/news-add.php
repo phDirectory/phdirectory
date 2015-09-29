@@ -29,6 +29,7 @@
 			<label id="form-label">Website link</label>
 			<input type="text" name="link" id="link" placeholder="website link" class="form-control">
 			<input type="submit" class="btn btn-primary" name="add_news" value="Add News">
+			<button class="btn btn-default"><a href="index.php?page=news" style="color:#000;">back</a></button>
 		</div>	
 	</form>
 </body>

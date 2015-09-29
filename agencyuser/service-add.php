@@ -24,6 +24,7 @@
 			<label id="form-label">details</label>
 			<textarea rows="4" cols="50" name="details" placeholder="Enter details here..." class="form-control" required></textarea>
 			<input type="submit" class="btn btn-primary" name="add_services" value="Add Services">
+			<button class="btn btn-default"><a href="index.php?page=services" style="color:#000;">back</a></button>
 		</div>	
 	</form>
 </body>

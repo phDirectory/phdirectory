@@ -48,12 +48,14 @@
 
 		if(empty($result1)&&empty($result2)&&empty($result3)&&$passmatch)
 		{
-			$sql="insert into agency(agencyName,email,phoneNo,status)values(?,?,?,?)";
+			$sql="insert into agency(agencyName,email,phoneNo,latitude,longitude,status)values(?,?,?,?,?,?)";
 			$query = conn();
 			$query->prepare($sql)->execute(array($_POST["agencyname"],
 											   	$_POST["agencyemail"],
 												$_POST["agencyphone"],
-												"I"
+												$_POST["lat"],
+												$_POST["long"],
+												"A"
 											   ));
 			$agencyID = $query->lastInsertId();
 
@@ -64,7 +66,7 @@
 												$_POST["contactNo"],"A"
 											   ));
 			login($_POST['username'], $_POST['password']);
-			//header("Location: index.php?page=success");
+			header("Location: agencyadmin/index.php?page=subscription");
 			// $ret=array();
 			// $ret["ok"]=true;
 			// return $ret;
@@ -235,6 +237,16 @@
 		$db = null;
 	}
 
+	function finds_event()
+	{
+		$id=$_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT * FROM events WHERE status = 'A' and agencyID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+
 	function find_events($id)
 	{
 		$db=conn();
@@ -248,7 +260,7 @@
 	function getAllNewsForMobile()
 	{
 		$db = conn();
-		$sql = "SELECT * FROM news WHERE status = 'A' ORDER BY datePosted";
+		$sql = "SELECT * FROM news JOIN agency ON news.agencyID = agency.agencyID WHERE news.status = 'A' ORDER BY datePosted";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db = null;
@@ -269,6 +281,16 @@
 		  INNER JOIN subscription_plan ON subscriptions.SPID = subscription_plan.SPID
 		  INNER JOIN agency ON subscriptions.subscriberID = agency.agencyID 
 		  WHERE subtype = 'A' AND CURDATE() <= endDate";
+		  $result = $db->query($sql)->fetchAll();
+		  return $result;
+		  $db = null;
+	}
+	function find_allsub()
+	{
+		$db = conn();
+		$sql = "SELECT * FROM subscriptions 
+		  INNER JOIN subscription_plan ON subscriptions.SPID = subscription_plan.SPID
+		  INNER JOIN agency ON subscriptions.subscriberID = agency.agencyID ";
 		  $result = $db->query($sql)->fetchAll();
 		  return $result;
 		  $db = null;
@@ -316,7 +338,47 @@
 	{
 		$id = $_SESSION['userData']['agencyID'];
 		$db = conn();
-		$sql = "SELECT count(inquiryID) as total FROM inquiry WHERE agencyID = $id";
+		$sql = "SELECT count(inquiryID) as total FROM inquiry WHERE agencyID = $id AND status != 'A' ";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db = null;
+	}
+
+	function countInquiryForMobile($userID)
+	{
+		
+		$db = conn();
+		$sql = "SELECT count(inquiryID) as total FROM inquiry WHERE mobileID = $userID ";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db = null;
+	}
+
+	function countNewsForMobile($userID, $agencyID)
+	{
+		
+		$db = conn();
+		$sql = "SELECT count(newsID) as total FROM news WHERE agencyID = $agencyID ";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db = null;
+	}
+
+	function countEventsForMobile($userID, $agencyID)
+	{
+		
+		$db = conn();
+		$sql = "SELECT count(eventID) as total FROM events WHERE AND agencyID = $agencyID ";
+		$result = $db->query($sql)->fetch();
+		return $result;
+		$db = null;
+	}
+
+	function countServicesForMobile($userID, $agencyID)
+	{
+		
+		$db = conn();
+		$sql = "SELECT count(serviceID) as total FROM services WHERE agencyID = $agencyID ";
 		$result = $db->query($sql)->fetch();
 		return $result;
 		$db = null;
@@ -404,7 +466,7 @@
 	function sendInquiryForMobile($userid, $agencyid, $title, $message){
 		$db = conn();
 		$currentDate = date('Y-m-d');
-		$db->exec("INSERT INTO inquiry(mobileID, agencyID, title, message, date_inquire)VALUES('".$userid."','".$agencyid."','".$title."','".$message."','".$currentDate."')");
+		$db->exec("INSERT INTO inquiry(mobileID, agencyID, title, message, date_inquire, status)VALUES('".$userid."','".$agencyid."','".$title."','".$message."','".$currentDate."','M')");
 		$db = null;
 
 	}
