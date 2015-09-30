@@ -14,7 +14,13 @@
 		$title = $_POST['title'];
 		$info = $_POST['info'];
 		$link = $_POST['link'];
-		conn()->exec("INSERT INTO news(newsType, title, datePosted, info, link,agencyID)VALUES('". $type ."','". $title ."','". $date ."','". $info ."','". $link ."','".$userData["agencyID"]."')");
+		$count = count($_POST['cascade']);
+		for ($i=0; $i < $count; $i++) { 
+			foreach ($_POST['cascade'] as $c) {
+				$cascade = $c[$i] .",". $cascade;
+			}
+		}
+		conn()->exec("INSERT INTO news(newsType, title, datePosted, info, link,agencyID,cascadeTo)VALUES('". $type ."','". $title ."','". $date ."','". $info ."','". $link ."','".$userData["agencyID"]."','". $cascade ."')");
 	}
 
 	function getallnews()
@@ -417,17 +423,37 @@
 		return $result;
 		$db=null;
 	}
-	function hierarchy($sub)
+	function hierarchy($parent)
 	{
 		$db=conn();
-		$id = $_SESSION['userData']['agencyID'];
-		$db->exec("INSERT INTO govhierarchy(AgencyID,subAgencyID)VALUES('".$id."','".$sub."')");
+		$sub_id = $_SESSION['userData']['agencyID'];
+		$db->exec("INSERT INTO govhierarchy(AgencyID,subAgencyID)VALUES('".$parent."','".$sub_id."')");
 	}
 	function getHierarchy()
 	{
 		$id = $_SESSION['userData']['agencyID'];
 		$db = conn();
+		$sql = "SELECT AgencyID FROM govhierarchy WHERE subAgencyID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
+	}
+	function findHierarchy()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
 		$sql = "SELECT subAgencyID FROM govhierarchy WHERE AgencyID = $id";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db=null;
+	}
+	function get_Hierarchy()
+	{
+		$id = $_SESSION['userData']['agencyID'];
+		$db = conn();
+		$sql = "SELECT govhierarchy.subAgencyID, agency.agencyName FROM govhierarchy
+		INNER JOIN agency ON agency.agencyID = govhierarchy.subAgencyID
+		WHERE govhierarchy.AgencyID = $id";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db=null;
@@ -437,8 +463,8 @@
 	{
 		$id = $_SESSION['userData']['agencyID'];
 		$db = conn();
-		$sql = "SELECT agency.agencyName, govhierarchy.GovHierID FROM agency 
-		INNER JOIN govhierarchy ON govhierarchy.subAgencyID = agency.agencyID";
+		$sql = "SELECT agency.agencyName, govhierarchy.GovHierID, govhierarchy.AgencyID FROM agency 
+		INNER JOIN govhierarchy ON govhierarchy.AgencyID = agency.agencyID";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db = null;

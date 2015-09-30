@@ -5,9 +5,11 @@
 		if(isset($_POST['newstype'])&&isset($_POST['title'])&&isset($_POST['info']))
 		{
 			addnews($_POST);
+			//print_r($_POST);
 			header("Location:index.php?page=news");
 		}
-	}	
+	}
+	$hier = get_Hierarchy();	
 ?>
 
 <html>
@@ -28,7 +30,14 @@
 			<textarea rows="4" cols="50" name="info" placeholder="Enter Information here..." class="form-control" required></textarea>
 			<label id="form-label">Website link</label>
 			<input type="text" name="link" id="link" placeholder="website link" class="form-control">
-			<input type="submit" class="btn btn-primary" name="add_news" value="Add News">
+			<label id="form-label">Cascade To</label>
+			<div>(NOTE: hold CTRL to select multiple value.)</div>
+			<select name="cascade[]" class="form-control" multiple>
+			<?php foreach ($hier as $h): ?>
+			<option value="<?php echo $h['subAgencyID']; ?>"><?php echo $h['agencyName']; ?></option>				
+			<?php endforeach ?>
+			</select>
+			<input type="submit" class="btn btn-primary" name="add_news" value="Add Entry">
 		</div>	
 	</form>
 </body>
