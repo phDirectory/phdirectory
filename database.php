@@ -454,7 +454,7 @@
 
 	function getInquiryForMobile($userid){
 		$db = conn();
-		$sql = "SELECT agency.agencyName, inquiry.agencyID, inquiry.inquiryID, inquiry.title, inquiry.message, inquiry.date_inquire, inquiry.mobileID FROM inquiry
+		$sql = "SELECT agency.agencyName, inquiry.agencyID, inquiry.inquiryID, inquiry.title, inquiry.mobileID, inquiry.status FROM inquiry
 		  JOIN agency ON inquiry.agencyID = agency.agencyID WHERE mobileID = '$userid' order by inquiryID desc";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
@@ -462,11 +462,27 @@
 
 	}
 
+	function getInquiryTrail($inquiryId){
+		$db = conn();
+		$sql = "SELECT * FROM inquirytrail WHERE inquiryID = '$inquiryId'";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
 
-	function sendInquiryForMobile($userid, $agencyid, $title, $message){
+	}
+
+
+	function sendInquiryForMobile($userid, $agencyid, $title){
 		$db = conn();
 		$currentDate = date('Y-m-d');
-		$db->exec("INSERT INTO inquiry(mobileID, agencyID, title, message, date_inquire, status)VALUES('".$userid."','".$agencyid."','".$title."','".$message."','".$currentDate."','M')");
+		$db->exec("INSERT INTO inquiry(mobileID, agencyID, title, status)VALUES('".$userid."','".$agencyid."','".$title."','On-Going')");
+		$db = null;
+
+	}
+
+	function sendSuggestionForMobile($agencyid, $message){
+		$db = conn();
+		$db->exec("INSERT INTO suggestions(agencyID, message)VALUES('".$agencyid."','".$message."')");
 		$db = null;
 
 	}
