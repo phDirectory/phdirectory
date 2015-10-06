@@ -266,6 +266,14 @@
 		$db = null;
 	}
 
+	function getNewsFiltered($agencyid){
+		$db = conn();
+		$sql = "SELECT * FROM news JOIN agency ON news.agencyID = agency.agencyID WHERE news.agencyID='$agencyid' news.status = 'A' and news.cascadeTo LIKE %$agencyid% ORDER BY datePosted";
+		$result = $db->query($sql)->fetchAll();
+		return $result;
+		$db = null;
+	}
+
 	function registerForMobile($username, $password, $email, $fullname, $phoneNo){
 
 		$sql="insert into mobile_user(username,password,email,fullname,phoneNo)values(?,?,?,?,?)";
@@ -464,13 +472,19 @@
 
 	function getInquiryTrail($inquiryId){
 		$db = conn();
-		$sql = "SELECT * FROM inquirytrail WHERE inquiryID = '$inquiryId'";
+		$sql = "SELECT * FROM inquirytrail WHERE inquiryID = '$inquiryId' order by 1 DESC";
 		$result = $db->query($sql)->fetchAll();
 		return $result;
 		$db = null;
 
 	}
 
+	function sendInquiryTrail($inquiryID, $message){
+		$db = conn();
+		$db->exec("INSERT INTO inquirytrail(inquiryID, message, trailFrom)VALUES('".$inquiryID."','".$message."','M')");
+		$db = null;
+
+	}
 
 	function sendInquiryForMobile($userid, $agencyid, $title){
 		$db = conn();
